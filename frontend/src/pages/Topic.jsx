@@ -117,8 +117,8 @@ const Topic = () => {
             <div
               className="topic-section-card"
               style={{
-                background: '#f8fafc',
-                border: '1px solid #bfdbfe',
+                background: 'rgba(10, 20, 48, 0.7)',
+                border: '1px solid rgba(59, 130, 246, 0.3)',
                 borderLeft: '4px solid var(--accent)',
               }}
             >
@@ -134,12 +134,12 @@ const Topic = () => {
             <div
               className="topic-section-card"
               style={{
-                background: '#eff6ff',
-                border: '1px solid #bfdbfe',
+                background: 'rgba(10, 20, 48, 0.7)',
+                border: '1px solid rgba(59, 130, 246, 0.3)',
               }}
             >
-              <h3 style={{ color: '#1d4ed8' }}>🧠 3. How Memory Allocates & Executes</h3>
-              <div style={{ fontSize: '0.96rem', lineHeight: 1.75, color: '#1e293b', whiteSpace: 'pre-line' }}>
+              <h3 style={{ color: '#60a5fa' }}>🧠 3. How Memory Allocates & Executes</h3>
+              <div style={{ fontSize: '0.96rem', lineHeight: 1.75, color: 'var(--text-secondary)', whiteSpace: 'pre-line' }}>
                 {topic.memoryAllocation}
               </div>
             </div>
@@ -169,12 +169,12 @@ const Topic = () => {
           <div
             className="topic-section-card"
             style={{
-              background: '#fffbeb',
-              border: '1px solid #fef3c7',
+              background: 'rgba(15, 23, 42, 0.75)',
+              border: '1px solid rgba(59, 130, 246, 0.25)',
             }}
           >
-            <h3 style={{ color: '#b45309' }}>💡 5. Simple Everyday Analogy</h3>
-            <p style={{ fontSize: '1.02rem', lineHeight: 1.75, color: '#78350f' }}>
+            <h3 style={{ color: '#38bdf8' }}>💡 5. Simple Everyday Analogy</h3>
+            <p style={{ fontSize: '1.02rem', lineHeight: 1.75, color: 'var(--text-secondary)' }}>
               {topic.simpleExplanation || 'Think of this concept like a standard recipe in a kitchen.'}
             </p>
           </div>
@@ -235,12 +235,12 @@ const Topic = () => {
             <div
               className="topic-section-card"
               style={{
-                background: '#fef2f2',
-                border: '1px solid #fecaca',
+                background: 'rgba(239, 68, 68, 0.08)',
+                border: '1px solid rgba(239, 68, 68, 0.25)',
               }}
             >
-              <h3 style={{ color: '#b91c1c' }}>⚠️ 9. Common Pitfalls & Anti-Patterns</h3>
-              <ul style={{ paddingLeft: '1.5rem', lineHeight: 1.8, color: '#991b1b' }}>
+              <h3 style={{ color: '#f87171' }}>⚠️ 9. Common Pitfalls & Anti-Patterns</h3>
+              <ul style={{ paddingLeft: '1.5rem', lineHeight: 1.8, color: '#fca5a5' }}>
                 {topic.commonMistakes.map((mistake, idx) => (
                   <li key={idx} style={{ marginBottom: '0.4rem' }}>
                     {mistake}
@@ -281,7 +281,7 @@ const Topic = () => {
                   <div
                     key={idx}
                     style={{
-                      background: '#ffffff',
+                      background: 'var(--surface)',
                       border: '1px solid var(--border)',
                       borderRadius: 'var(--radius-md)',
                       padding: '1.25rem',
@@ -309,10 +309,10 @@ const Topic = () => {
                         style={{
                           marginTop: '0.75rem',
                           padding: '0.75rem 1rem',
-                          background: '#f0fdf4',
+                          background: 'rgba(34, 197, 94, 0.12)',
                           borderLeft: '3px solid var(--success)',
                           fontSize: '0.92rem',
-                          color: '#166534',
+                          color: '#4ade80',
                           borderRadius: '0 var(--radius-sm) var(--radius-sm) 0',
                           lineHeight: 1.6,
                         }}
@@ -343,7 +343,7 @@ const Topic = () => {
                   ✓ Completed Lesson
                 </div>
               ) : (
-                <div style={{ color: '#d97706', fontWeight: 600 }}>In Progress</div>
+                <div style={{ color: '#fbbf24', fontWeight: 600 }}>In Progress</div>
               )}
             </div>
 

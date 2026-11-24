@@ -246,7 +246,7 @@ const ToolDetailsModal = ({ tool, onClose, onSelectTool }) => {
               <section id="dev-sec-rules" className="dev-modal-section dev-section-card dev-rules-card">
                 <div className="dev-section-header">
                   <span className="dev-sec-badge blue">03</span>
-                  <h3 className="dev-section-title" style={{ color: '#1d4ed8' }}>
+                  <h3 className="dev-section-title" style={{ color: '#60a5fa' }}>
                     📋 Core Rules, Configuration Standards & Team Workflows
                   </h3>
                 </div>
@@ -292,7 +292,7 @@ const ToolDetailsModal = ({ tool, onClose, onSelectTool }) => {
               <section id="dev-sec-pitfalls" className="dev-modal-section dev-section-card dev-pitfalls-card">
                 <div className="dev-section-header">
                   <span className="dev-sec-badge red">06</span>
-                  <h3 className="dev-section-title" style={{ color: '#b91c1c' }}>
+                  <h3 className="dev-section-title" style={{ color: '#f87171' }}>
                     ⚠️ Common Pitfalls & Anti-Patterns in Production
                   </h3>
                 </div>

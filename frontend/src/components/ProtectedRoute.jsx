@@ -20,7 +20,8 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
   }
 
   if (adminOnly && !isAdmin) {
-    return <Navigate to="/project-hub" replace state={{ accessDenied: true }} />;
+    const redirectTarget = location.pathname.startsWith('/projects') ? '/project-hub' : '/dashboard';
+    return <Navigate to={redirectTarget} replace state={{ accessDenied: true }} />;
   }
 
   return children;

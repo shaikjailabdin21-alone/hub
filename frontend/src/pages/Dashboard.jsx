@@ -137,8 +137,8 @@ const Dashboard = () => {
           to="/career-hub"
           style={{
             display: 'block',
-            background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
-            border: '1px solid #bfdbfe',
+            background: 'linear-gradient(135deg, rgba(8, 18, 44, 0.95) 0%, rgba(4, 10, 28, 0.98) 100%)',
+            border: '1px solid rgba(59, 130, 246, 0.35)',
             borderRadius: 'var(--radius-lg)',
             padding: '2rem 2.25rem',
             textDecoration: 'none',
@@ -165,7 +165,7 @@ const Dashboard = () => {
             </span>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', background: '#ffffff', padding: '1.25rem 1.5rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border)', boxShadow: '0 1px 3px rgba(0,0,0,0.03)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', background: 'rgba(15, 23, 42, 0.75)', padding: '1.25rem 1.5rem', borderRadius: 'var(--radius-md)', border: '1px solid rgba(59, 130, 246, 0.25)', boxShadow: '0 1px 3px rgba(0,0,0,0.2)' }}>
             <div>
               <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700 }}>Career Track</div>
               <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--text-primary)', marginTop: '0.25rem' }}>{careerInfo.selectedCareer}</div>
@@ -177,15 +177,15 @@ const Dashboard = () => {
             </div>
             <div>
               <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700 }}>Next Skill</div>
-              <div style={{ fontSize: '1.05rem', fontWeight: 800, color: '#d97706', marginTop: '0.25rem' }}>⚡ {careerInfo.nextSkill}</div>
+              <div style={{ fontSize: '1.05rem', fontWeight: 800, color: '#fbbf24', marginTop: '0.25rem' }}>⚡ {careerInfo.nextSkill}</div>
             </div>
             <div>
               <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700 }}>Projects Completed</div>
-              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#16a34a', marginTop: '0.25rem' }}>{careerInfo.projectsCompleted}</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#4ade80', marginTop: '0.25rem' }}>{careerInfo.projectsCompleted}</div>
             </div>
             <div>
               <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700 }}>Interview Readiness</div>
-              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#2563eb', marginTop: '0.25rem' }}>{careerInfo.interviewReadiness}%</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#60a5fa', marginTop: '0.25rem' }}>{careerInfo.interviewReadiness}%</div>
               <div style={{ marginTop: '0.4rem' }}><ProgressBar value={careerInfo.interviewReadiness} height="5px" /></div>
             </div>
           </div>
@@ -197,14 +197,14 @@ const Dashboard = () => {
         <section
           className="continue-learning-section"
           style={{
-            background: 'linear-gradient(135deg, #eff6ff 0%, #e0f2fe 100%)',
-            border: '1px solid #bfdbfe',
+            background: 'linear-gradient(135deg, rgba(10, 20, 48, 0.95) 0%, rgba(4, 10, 28, 0.98) 100%)',
+            border: '1px solid rgba(59, 130, 246, 0.35)',
             marginBottom: '2.5rem',
             boxShadow: 'var(--card-shadow)',
           }}
         >
           <div className="continue-left">
-            <div className="continue-icon" style={{ background: '#dbeafe', color: 'var(--accent)' }}>
+            <div className="continue-icon" style={{ background: 'rgba(37, 99, 235, 0.18)', color: 'var(--accent)' }}>
               🛡️
             </div>
             <div>

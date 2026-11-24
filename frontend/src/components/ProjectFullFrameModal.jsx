@@ -402,7 +402,7 @@ const ProjectFullFrameModal = ({ project, onClose }) => {
                 height: deviceView === 'desktop' ? '100%' : 'calc(100% - 1rem)',
                 maxWidth: '100%',
                 maxHeight: '100%',
-                background: '#ffffff',
+                background: '#020617',
                 boxShadow: deviceView === 'desktop' ? 'none' : '0 10px 40px rgba(0, 0, 0, 0.85)',
                 borderRadius: deviceView === 'desktop' ? '0' : '12px',
                 overflow: 'hidden',
@@ -410,7 +410,7 @@ const ProjectFullFrameModal = ({ project, onClose }) => {
                 display: 'flex',
                 flexDirection: 'column',
                 transition: 'width 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                border: deviceView === 'desktop' ? 'none' : '2px solid rgba(255, 255, 255, 0.2)',
+                border: deviceView === 'desktop' ? 'none' : '2px solid rgba(59, 130, 246, 0.4)',
               }}
             >
               {/* Device Mockup Top Bar for Tablet & Mobile */}
@@ -486,7 +486,7 @@ const ProjectFullFrameModal = ({ project, onClose }) => {
                   border: 'none',
                   flex: 1,
                   display: 'block',
-                  background: '#ffffff',
+                  background: '#020617',
                 }}
               />
             </div>
@@ -673,9 +673,9 @@ const ProjectFullFrameModal = ({ project, onClose }) => {
                       fontWeight: 600,
                       padding: '0.2rem 0.6rem',
                       borderRadius: '6px',
-                      background: '#1e293b',
-                      color: '#c7d2fe',
-                      border: '1px solid #3730a3',
+                      background: 'rgba(37, 99, 235, 0.15)',
+                      color: '#93c5fd',
+                      border: '1px solid rgba(59, 130, 246, 0.3)',
                     }}
                   >
                     {tech}

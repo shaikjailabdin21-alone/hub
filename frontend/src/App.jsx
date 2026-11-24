@@ -3,15 +3,19 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider } from './context/AuthContext';
 import { ProgressProvider } from './context/ProgressContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { useAuth } from './hooks/useAuth';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 
-// Pages
-import Home from './pages/Home';
+// Auth Pages
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
+
+// Internal Website Pages
 import Dashboard from './pages/Dashboard';
 import TechnicalHub from './pages/TechnicalHub';
 import SkillsHub from './pages/SkillsHub';
@@ -29,7 +33,8 @@ import AdminDashboard from './pages/AdminDashboard';
 import DeveloperToolsPage from './pages/DeveloperToolsPage';
 import FloatingAiChatbot from './components/FloatingAiChatbot';
 
-function AppLayout() {
+// Main authenticated application shell with Sidebar, Navbar, Footer, and AI Chatbot
+function MainLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -48,76 +53,8 @@ function AppLayout() {
 
       <div className="main-content-wrapper">
         <Navbar onToggleSidebar={() => setSidebarOpen((prev) => !prev)} />
-
         <main className="main-content">
-          <Routes>
-            {/* Public Landing & Auth Routes */}
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-
-            {/* Protected Dashboard */}
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            />
-
-            {/* Curricula Hubs */}
-            <Route path="/technical-hub" element={<TechnicalHub />} />
-            <Route path="/technical-skills" element={<Navigate to="/technical-hub" replace />} />
-            <Route path="/skills-hub" element={<SkillsHub />} />
-            <Route path="/coding-hub" element={<CodingHub />} />
-            <Route path="/developer-tools" element={<DeveloperToolsPage />} />
-            <Route path="/developer-tools/:toolId" element={<DeveloperToolsPage />} />
-            <Route path="/tools" element={<Navigate to="/developer-tools" replace />} />
-            <Route path="/tools/:toolId" element={<Navigate to="/developer-tools/:toolId" replace />} />
-            <Route path="/career-hub" element={<CareerHub />} />
-            <Route path="/project-hub" element={<ProjectHub />} />
-
-            {/* Curriculum Reader & Quiz Interactive Modules */}
-            <Route path="/topic/:topicSlug" element={<Topic />} />
-            <Route path="/quiz/:topicSlug" element={<Quiz />} />
-
-            {/* Admin Dedicated Dashboard & Workspace */}
-            <Route
-              path="/admin"
-              element={
-                <ProtectedRoute adminOnly={true}>
-                  <AdminDashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/dashboard"
-              element={
-                <ProtectedRoute adminOnly={true}>
-                  <AdminDashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/projects" element={<Navigate to="/project-hub" replace />} />
-            <Route path="/management-hub" element={<Navigate to="/project-hub" replace />} />
-            <Route
-              path="/progress"
-              element={
-                <ProtectedRoute>
-                  <Progress />
-                </ProtectedRoute>
-              }
-            />
-
-            {/* Community & Support */}
-            <Route path="/community" element={<Community />} />
-            <Route path="/help" element={<Help />} />
-            <Route path="/info" element={<Info />} />
-
-            {/* Fallback */}
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+          {children}
           <Footer />
         </main>
       </div>
@@ -128,13 +65,264 @@ function AppLayout() {
   );
 }
 
+function AppRoutes() {
+  const { isAuthenticated, isAdmin, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div
+        className="loading-container"
+        style={{
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: '#020617',
+        }}
+      >
+        <div className="spinner"></div>
+        <p style={{ marginTop: '1rem', color: '#94a3b8' }}>Verifying session...</p>
+      </div>
+    );
+  }
+
+  return (
+    <Routes>
+      {/* Entry Root: Always show Login page first when not authenticated; redirect to Admin or Student Dashboard when logged in */}
+      <Route
+        path="/"
+        element={<Navigate to={isAuthenticated ? (isAdmin ? '/admin' : '/dashboard') : '/login'} replace />}
+      />
+
+      {/* Public Authentication Pages (Clean, focused UI without internal navigation) */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+
+      {/* Protected Internal Website Routes */}
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <Dashboard />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Technical Hub */}
+      <Route
+        path="/technical-hub"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <TechnicalHub />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route path="/technical-skills" element={<Navigate to="/technical-hub" replace />} />
+
+      {/* Skills Hub */}
+      <Route
+        path="/skills-hub"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <SkillsHub />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Coding Hub */}
+      <Route
+        path="/coding-hub"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <CodingHub />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Developer Tools */}
+      <Route
+        path="/developer-tools"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <DeveloperToolsPage />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/developer-tools/:toolId"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <DeveloperToolsPage />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route path="/tools" element={<Navigate to="/developer-tools" replace />} />
+      <Route
+        path="/tools/:toolId"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <DeveloperToolsPage />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Career Hub */}
+      <Route
+        path="/career-hub"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <CareerHub />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Project Hub */}
+      <Route
+        path="/project-hub"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <ProjectHub />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+      {/* Project Management (Admin only) */}
+      <Route
+        path="/projects"
+        element={
+          <ProtectedRoute adminOnly={true}>
+            <MainLayout>
+              <Projects />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route path="/management-hub" element={<Navigate to="/projects" replace />} />
+
+      {/* Topic & Quiz Reader */}
+      <Route
+        path="/topic/:topicSlug"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <Topic />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/quiz/:topicSlug"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <Quiz />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Progress & Analytics */}
+      <Route
+        path="/progress"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <Progress />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Community, Help & Info */}
+      <Route
+        path="/community"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <Community />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/help"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <Help />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/info"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <Info />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Admin Dashboard — Protected + Admin Role only */}
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute adminOnly={true}>
+            <MainLayout>
+              <AdminDashboard />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/dashboard"
+        element={
+          <ProtectedRoute adminOnly={true}>
+            <MainLayout>
+              <AdminDashboard />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Fallback route: Always redirect unauthenticated users to /login, and authenticated to /dashboard */}
+      <Route
+        path="*"
+        element={<Navigate to={isAuthenticated ? '/dashboard' : '/login'} replace />}
+      />
+    </Routes>
+  );
+}
+
 function App() {
   return (
     <Router>
       <ThemeProvider>
         <AuthProvider>
           <ProgressProvider>
-            <AppLayout />
+            <AppRoutes />
           </ProgressProvider>
         </AuthProvider>
       </ThemeProvider>

@@ -45,16 +45,16 @@
 .legend-box-topic {
   width: 22px;
   height: 18px;
-  background-color: #fde047;
-  border: 2px solid #0f172a;
+  background-color: #2563eb;
+  border: 2px solid #3b82f6;
   border-radius: 4px;
 }
 
 .legend-box-checkpoint {
   width: 22px;
   height: 18px;
-  background-color: #0f172a;
-  border: 2px solid #0f172a;
+  background-color: #071026;
+  border: 2px solid rgba(59, 130, 246, 0.4);
   border-radius: 4px;
 }
 
@@ -126,17 +126,17 @@
   max-width: 60px;
 }
 
-/* Yellow Topic Pill (roadmap.sh style) */
+/* Blue Topic Pill */
 .flowchart-topic-pill {
-  background-color: #fde047;
-  color: #0f172a;
-  border: 2px solid #0f172a;
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+  color: #ffffff;
+  border: 2px solid #3b82f6;
   border-radius: 8px;
   padding: 0.65rem 1.25rem;
   font-size: 0.92rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 3px 0 #0f172a;
+  box-shadow: 0 3px 0 #1e3a8a, 0 4px 14px rgba(37, 99, 235, 0.35);
   transition: all 0.15s ease-in-out;
   display: inline-flex;
   align-items: center;
@@ -150,22 +150,24 @@
 
 .flowchart-topic-pill:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 0 #0f172a;
-  background-color: #facc15;
+  box-shadow: 0 5px 0 #1e3a8a, 0 6px 20px rgba(37, 99, 235, 0.5);
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  border-color: #60a5fa;
 }
 
 .flowchart-topic-pill:active {
   transform: translateY(2px);
-  box-shadow: 0 1px 0 #0f172a;
+  box-shadow: 0 1px 0 #1e3a8a;
 }
 
 .flowchart-topic-pill.is-completed {
-  background-color: #86efac;
-  border-color: #0f172a;
+  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+  border-color: #38bdf8;
+  color: #ffffff;
 }
 
 .flowchart-topic-pill.is-completed:hover {
-  background-color: #4ade80;
+  background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
 }
 
 /* Checkpoint Grid & Connectors */
@@ -192,17 +194,17 @@
   margin-bottom: 4px;
 }
 
-/* Dark Checkpoint Pill (roadmap.sh style) */
+/* Dark Navy Checkpoint Pill */
 .flowchart-checkpoint-pill {
-  background-color: #0f172a;
-  color: #ffffff;
-  border: 2px solid #0f172a;
+  background-color: #071026;
+  color: #f8fafc;
+  border: 2px solid rgba(59, 130, 246, 0.35);
   border-radius: 8px;
   padding: 0.6rem 1.15rem;
   font-size: 0.88rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 3px 0 rgba(15, 23, 42, 0.3);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.6);
   transition: all 0.15s ease-in-out;
   display: inline-flex;
   align-items: center;
@@ -213,13 +215,16 @@
 
 .flowchart-checkpoint-pill:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 12px rgba(15, 23, 42, 0.25);
-  background-color: #1e293b;
+  box-shadow: 0 5px 14px rgba(37, 99, 235, 0.3);
+  background-color: #0b1a3d;
+  border-color: #3b82f6;
+  color: #60a5fa;
 }
 
 .flowchart-checkpoint-pill.is-completed {
-  background-color: #15803d;
-  border-color: #14532d;
+  background-color: #0a1f44;
+  border-color: #2563eb;
+  color: #93c5fd;
 }
 
 /* Callout Note Bubble */

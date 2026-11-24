@@ -68,6 +68,12 @@ const UserSchema = new mongoose.Schema(
     modulesUsed: [{
       type: String,
     }],
+    resetPasswordToken: {
+      type: String,
+    },
+    resetPasswordExpire: {
+      type: Date,
+    },
     careerProfile: {
       selectedCareer: { type: String, default: 'Software Developer' },
       education: { type: String, default: 'B.Tech' },

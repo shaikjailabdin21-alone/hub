@@ -93,9 +93,9 @@ const Help = () => {
             {formSubmitted ? (
               <div
                 style={{
-                  background: '#f0fdf4',
-                  border: '1px solid #bbf7d0',
-                  color: '#166534',
+                  background: 'rgba(34, 197, 94, 0.12)',
+                  border: '1px solid rgba(34, 197, 94, 0.35)',
+                  color: '#4ade80',
                   padding: '1.25rem',
                   borderRadius: 'var(--radius-md)',
                   textAlign: 'center',

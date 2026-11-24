@@ -120,7 +120,7 @@ export const ProgressProvider = ({ children }) => {
           topicSlug,
           hubSlug,
           completed: pct >= 70,
-          quizScore: pct,
+          quizScore: score,
           quizTotal: total,
         });
       }

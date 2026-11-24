@@ -208,8 +208,8 @@ const CareerRoadmapFlowchart = ({
                   style={{
                     width: '18px',
                     height: '18px',
-                    backgroundColor: '#fde047',
-                    border: '2px solid #0f172a',
+                    backgroundColor: '#2563eb',
+                    border: '2px solid #3b82f6',
                     borderRadius: '4px',
                     display: 'inline-block',
                   }}
@@ -301,8 +301,8 @@ const CareerRoadmapFlowchart = ({
               </div>
             </div>
 
-            <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', padding: '0.85rem 1rem', borderRadius: 'var(--radius-sm)', marginBottom: '1.25rem' }}>
-              <div style={{ fontSize: '0.82rem', color: '#166534', fontWeight: 600 }}>
+            <div style={{ background: 'rgba(37, 99, 235, 0.12)', border: '1px solid rgba(59, 130, 246, 0.3)', padding: '0.85rem 1rem', borderRadius: 'var(--radius-sm)', marginBottom: '1.25rem' }}>
+              <div style={{ fontSize: '0.82rem', color: '#93c5fd', fontWeight: 600 }}>
                 💡 Portfolio Tip: Push this deliverable to GitHub with clean commit history, unit tests, and architecture diagrams.
               </div>
             </div>

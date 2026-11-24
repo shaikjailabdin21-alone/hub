@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
@@ -64,7 +65,7 @@ const register = async (req, res) => {
     // Check if user already exists
     const existingUser = await User.findOne({ email: normalizedEmail });
     if (existingUser) {
-      return res.status(400).json({
+      return res.status(409).json({
         success: false,
         message: 'An account with this email address already exists. Please log in.',
       });
@@ -236,15 +237,7 @@ const login = async (req, res) => {
     }
 
     // Check password securely using bcrypt comparison
-    let isMatch = await bcrypt.compare(password, user.password);
-
-    // Fallback for environment configured demo credentials during local development
-    if (!isMatch && adminDemoPass && password === adminDemoPass) {
-      const isDesignatedAdmin = user.email === adminEmail || user.email === 'shaikjailabdin23@gmail.com' || user.email === 'admin@hub.edu';
-      if (isDesignatedAdmin) {
-        isMatch = true;
-      }
-    }
+    const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
       return res.status(401).json({
@@ -356,8 +349,129 @@ const getMe = async (req, res) => {
   }
 };
 
+// @desc    Forgot password – generate reset token
+// @route   POST /api/auth/forgot-password
+// @access  Public
+const forgotPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please provide your email address.',
+      });
+    }
+
+    const normalizedEmail = email.toLowerCase().trim();
+    const user = await User.findOne({ email: normalizedEmail });
+
+    if (!user) {
+      // For security, don't reveal whether the email exists
+      return res.status(200).json({
+        success: true,
+        message: 'If an account with that email exists, a password reset link has been sent.',
+      });
+    }
+
+    // Generate reset token
+    const resetToken = crypto.randomBytes(32).toString('hex');
+
+    // Hash the token and store it on the user
+    user.resetPasswordToken = crypto
+      .createHash('sha256')
+      .update(resetToken)
+      .digest('hex');
+    user.resetPasswordExpire = Date.now() + 60 * 60 * 1000; // 1 hour
+
+    await user.save();
+
+    // Log the token for development (in production, send via email)
+    console.log(`[Auth] Password reset token for ${normalizedEmail}: ${resetToken}`);
+
+    return res.status(200).json({
+      success: true,
+      message: 'If an account with that email exists, a password reset link has been sent.',
+      // Include resetToken in response for development/testing purposes
+      resetToken: process.env.NODE_ENV !== 'production' ? resetToken : undefined,
+    });
+  } catch (error) {
+    console.error('[ForgotPassword Error]:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Server error while processing password reset request.',
+    });
+  }
+};
+
+// @desc    Reset password using token
+// @route   POST /api/auth/reset-password
+// @access  Public
+const resetPassword = async (req, res) => {
+  try {
+    const { token, password } = req.body;
+
+    if (!token || !password) {
+      return res.status(400).json({
+        success: false,
+        message: 'Reset token and new password are required.',
+      });
+    }
+
+    if (password.length < 6) {
+      return res.status(400).json({
+        success: false,
+        message: 'Password must be at least 6 characters long.',
+      });
+    }
+
+    // Hash the incoming token to compare against stored hash
+    const hashedToken = crypto
+      .createHash('sha256')
+      .update(token)
+      .digest('hex');
+
+    const user = await User.findOne({
+      resetPasswordToken: hashedToken,
+      resetPasswordExpire: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid or expired reset token. Please request a new password reset.',
+      });
+    }
+
+    // Hash the new password
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(password, salt);
+
+    // Clear reset token fields
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save();
+
+    console.log(`[Auth] Password successfully reset for: ${user.email}`);
+
+    return res.status(200).json({
+      success: true,
+      message: 'Password has been reset successfully. You can now log in with your new password.',
+    });
+  } catch (error) {
+    console.error('[ResetPassword Error]:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Server error while resetting password.',
+    });
+  }
+};
+
 module.exports = {
   register,
   login,
   getMe,
+  forgotPassword,
+  resetPassword,
 };

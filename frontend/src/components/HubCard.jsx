@@ -30,7 +30,7 @@ const HubCard = ({ hub, progress = 0 }) => {
           className="hub-card-icon"
           style={{
             background: hub.gradient || 'var(--accent-gradient)',
-            boxShadow: `0 8px 20px ${hub.color ? hub.color + '44' : 'rgba(108, 99, 255, 0.4)'}`,
+            boxShadow: `0 8px 20px ${hub.color ? hub.color + '44' : 'rgba(37, 99, 235, 0.4)'}`,
           }}
         >
           {iconEmoji}

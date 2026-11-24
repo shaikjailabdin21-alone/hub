@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const path = require('path');
+const fs = require('fs');
 
 let mongodInstance = null;
 
@@ -9,7 +11,7 @@ const connectDB = async () => {
   try {
     // Use a longer timeout for cloud deployments (Atlas + Render cold starts)
     await mongoose.connect(uri, {
-      serverSelectionTimeoutMS: isProduction ? 30000 : 5000,
+      serverSelectionTimeoutMS: isProduction ? 30000 : 1500,
       connectTimeoutMS: 30000,
       socketTimeoutMS: 45000,
     });
@@ -17,26 +19,35 @@ const connectDB = async () => {
   } catch (err) {
     console.warn(`[Database] Could not connect to primary MongoDB URI: ${err.message}`);
 
-    console.log('[Database] Initializing in-memory MongoDB for local zero-config operation...');
+    if (isProduction) {
+      console.error('====================================================');
+      console.error('❌ FATAL: Production environment cannot fall back to temporary in-memory database.');
+      console.error('Please configure a valid, reachable MONGODB_URI in your environment variables.');
+      console.error('====================================================');
+      process.exit(1);
+    }
+
+    console.log('[Database] Initializing persistent local MongoDB storage for local zero-config operation...');
     try {
       const { MongoMemoryServer } = require('mongodb-memory-server');
-      mongodInstance = await MongoMemoryServer.create();
+      const dbDir = path.join(__dirname, '..', '.mongodb_data');
+      if (!fs.existsSync(dbDir)) {
+        fs.mkdirSync(dbDir, { recursive: true });
+      }
+
+      mongodInstance = await MongoMemoryServer.create({
+        instance: {
+          dbPath: dbDir,
+          storageEngine: 'wiredTiger',
+        },
+      });
       const inMemoryUri = mongodInstance.getUri();
       await mongoose.connect(inMemoryUri);
-      console.log(`[Database] Connected to In-Memory MongoDB at: ${inMemoryUri}`);
-      
-      if (isProduction) {
-        console.warn('====================================================');
-        console.warn('⚠️ WARNING: RUNNING IN-MEMORY DATABASE IN PRODUCTION');
-        console.warn('Your MONGODB_URI is invalid, so the server fell back to an in-memory database.');
-        console.warn('ALL DATA WILL BE LOST when the Render server restarts or goes to sleep!');
-        console.warn('Please update MONGODB_URI in Render with a valid Atlas cluster string.');
-        console.warn('====================================================');
-      } else {
-        console.log('[Database] Note: To persist data across restarts, configure MONGODB_URI in backend/.env');
-      }
+      console.log(`[Database] Connected to Persistent Local MongoDB at: ${inMemoryUri}`);
+      console.log(`[Database] Persistent database files stored in: ${dbDir}`);
+      console.log('[Database] User accounts and progress will persist across server restarts.');
     } catch (memErr) {
-      console.error('[Database] Failed to initialize in-memory MongoDB:', memErr.message);
+      console.error('[Database] Failed to initialize persistent local MongoDB:', memErr.message);
       console.error('[Database] Please ensure MongoDB is running locally or provide a valid MONGODB_URI in .env');
       process.exit(1);
     }

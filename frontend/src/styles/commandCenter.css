@@ -33,13 +33,13 @@
   height: 92vh;
   max-height: 750px;
   background: linear-gradient(165deg, rgba(15, 23, 52, 0.98) 0%, rgba(10, 15, 40, 0.99) 100%);
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.2);
   border-radius: 18px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   box-shadow:
-    0 0 60px rgba(99, 102, 241, 0.12),
+    0 0 60px rgba(59, 130, 246, 0.12),
     0 25px 50px rgba(0, 0, 0, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
   animation: cmdScaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -52,7 +52,7 @@
   justify-content: space-between;
   padding: 14px 20px;
   background: rgba(15, 20, 50, 0.8);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.15);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.15);
   flex-shrink: 0;
   gap: 12px;
 }
@@ -85,8 +85,8 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  color: #818cf8;
-  background: rgba(99, 102, 241, 0.12);
+  color: #60a5fa;
+  background: rgba(59, 130, 246, 0.12);
   padding: 2px 8px;
   border-radius: 4px;
   display: inline-block;
@@ -110,9 +110,9 @@
 }
 
 .cmd-nav-btn {
-  background: rgba(99, 102, 241, 0.1);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  color: #a5b4fc;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
   font-size: 0.75rem;
   font-weight: 600;
   padding: 5px 10px;
@@ -123,9 +123,9 @@
 }
 
 .cmd-nav-btn:hover {
-  background: rgba(99, 102, 241, 0.2);
-  color: #c7d2fe;
-  border-color: rgba(99, 102, 241, 0.4);
+  background: rgba(59, 130, 246, 0.2);
+  color: #bfdbfe;
+  border-color: rgba(59, 130, 246, 0.4);
 }
 
 .cmd-counter {
@@ -180,7 +180,7 @@
   gap: 2px;
   padding: 6px 16px;
   background: rgba(10, 15, 40, 0.6);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.1);
   flex-shrink: 0;
   overflow-x: auto;
 }
@@ -202,14 +202,14 @@
 }
 
 .cmd-tab:hover {
-  color: #a5b4fc;
-  background: rgba(99, 102, 241, 0.08);
+  color: #93c5fd;
+  background: rgba(59, 130, 246, 0.08);
 }
 
 .cmd-tab.active {
   color: #e0e7ff;
-  background: rgba(99, 102, 241, 0.15);
-  box-shadow: 0 0 12px rgba(99, 102, 241, 0.1);
+  background: rgba(59, 130, 246, 0.15);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.1);
 }
 
 .cmd-tab-icon {
@@ -218,16 +218,16 @@
 
 .cmd-tab-count {
   font-size: 0.65rem;
-  background: rgba(99, 102, 241, 0.2);
-  color: #a5b4fc;
+  background: rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
   padding: 1px 6px;
   border-radius: 10px;
   font-weight: 700;
 }
 
 .cmd-tab.active .cmd-tab-count {
-  background: rgba(99, 102, 241, 0.35);
-  color: #c7d2fe;
+  background: rgba(59, 130, 246, 0.35);
+  color: #bfdbfe;
 }
 
 /* ── Search Bar ── */
@@ -237,7 +237,7 @@
   gap: 8px;
   padding: 8px 16px;
   background: rgba(10, 15, 40, 0.4);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.08);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.08);
   flex-shrink: 0;
 }
 
@@ -249,7 +249,7 @@
 .cmd-search-input {
   flex: 1;
   background: rgba(15, 23, 52, 0.7);
-  border: 1px solid rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.15);
   color: #e2e8f0;
   padding: 7px 12px;
   border-radius: 8px;
@@ -264,8 +264,8 @@
 }
 
 .cmd-search-input:focus {
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.08);
 }
 
 .cmd-search-clear {
@@ -305,12 +305,12 @@
 }
 
 .cmd-center-body::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.2);
+  background: rgba(59, 130, 246, 0.2);
   border-radius: 3px;
 }
 
 .cmd-center-body::-webkit-scrollbar-thumb:hover {
-  background: rgba(99, 102, 241, 0.35);
+  background: rgba(59, 130, 246, 0.35);
 }
 
 /* ── Command Block ── */
@@ -322,14 +322,14 @@
 
 .cmd-command-block {
   background: rgba(15, 23, 52, 0.6);
-  border: 1px solid rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.1);
   border-radius: 12px;
   padding: 14px 16px;
   transition: all 0.2s;
 }
 
 .cmd-command-block:hover {
-  border-color: rgba(99, 102, 241, 0.25);
+  border-color: rgba(59, 130, 246, 0.25);
   background: rgba(20, 28, 58, 0.7);
 }
 
@@ -358,9 +358,9 @@
 }
 
 .cmd-copy-btn {
-  background: rgba(99, 102, 241, 0.12);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  color: #a5b4fc;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
   font-size: 0.73rem;
   font-weight: 600;
   padding: 5px 14px;
@@ -372,9 +372,9 @@
 }
 
 .cmd-copy-btn:hover {
-  background: rgba(99, 102, 241, 0.22);
-  color: #c7d2fe;
-  border-color: rgba(99, 102, 241, 0.4);
+  background: rgba(59, 130, 246, 0.22);
+  color: #bfdbfe;
+  border-color: rgba(59, 130, 246, 0.4);
 }
 
 .cmd-copy-btn.copied {
@@ -401,7 +401,7 @@
   gap: 8px;
   margin-top: 8px;
   padding-top: 8px;
-  border-top: 1px solid rgba(99, 102, 241, 0.06);
+  border-top: 1px solid rgba(59, 130, 246, 0.06);
 }
 
 .cmd-example-label {
@@ -456,13 +456,13 @@
   gap: 16px;
   padding: 10px 14px;
   background: rgba(15, 23, 52, 0.5);
-  border: 1px solid rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.08);
   border-radius: 10px;
   transition: all 0.2s;
 }
 
 .cmd-shortcut-item:hover {
-  border-color: rgba(99, 102, 241, 0.2);
+  border-color: rgba(59, 130, 246, 0.2);
   background: rgba(20, 28, 58, 0.6);
 }
 
@@ -495,7 +495,7 @@
 
 .cmd-about-card {
   background: rgba(15, 23, 52, 0.5);
-  border: 1px solid rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.1);
   border-radius: 12px;
   padding: 18px;
 }
@@ -503,7 +503,7 @@
 .cmd-about-heading {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #c7d2fe;
+  color: #bfdbfe;
   margin: 0 0 10px;
 }
 
@@ -565,7 +565,7 @@
   align-items: flex-start;
   gap: 14px;
   background: rgba(15, 23, 52, 0.5);
-  border: 1px solid rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.08);
   border-radius: 12px;
   padding: 14px 16px;
   transition: all 0.2s;
@@ -577,7 +577,7 @@
 }
 
 .cmd-tip-number {
-  background: linear-gradient(135deg, #6366f1, #a855f7);
+  background: linear-gradient(135deg, #3b82f6, #00d4ff);
   color: white;
   font-size: 0.72rem;
   font-weight: 800;
@@ -604,7 +604,7 @@
   justify-content: space-between;
   padding: 10px 20px;
   background: rgba(10, 15, 40, 0.7);
-  border-top: 1px solid rgba(99, 102, 241, 0.1);
+  border-top: 1px solid rgba(59, 130, 246, 0.1);
   flex-shrink: 0;
 }
 
@@ -617,11 +617,11 @@
 .cmd-footer-badge {
   font-size: 0.68rem;
   font-weight: 600;
-  color: #818cf8;
-  background: rgba(99, 102, 241, 0.08);
+  color: #60a5fa;
+  background: rgba(59, 130, 246, 0.08);
   padding: 3px 10px;
   border-radius: 6px;
-  border: 1px solid rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.12);
 }
 
 .cmd-footer-hint {
@@ -630,8 +630,8 @@
 }
 
 .cmd-footer-hint kbd {
-  background: rgba(99, 102, 241, 0.1);
-  border: 1px solid rgba(99, 102, 241, 0.15);
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.15);
   padding: 1px 5px;
   border-radius: 4px;
   font-size: 0.65rem;
@@ -690,8 +690,8 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.6px;
-  color: #818cf8;
-  background: rgba(99, 102, 241, 0.1);
+  color: #60a5fa;
+  background: rgba(59, 130, 246, 0.1);
   padding: 2px 8px;
   border-radius: 4px;
 }
@@ -719,14 +719,14 @@
   gap: 6px;
   margin-top: auto;
   padding-top: 8px;
-  border-top: 1px solid rgba(99, 102, 241, 0.06);
+  border-top: 1px solid rgba(59, 130, 246, 0.06);
 }
 
 .cmd-card-stat {
   font-size: 0.67rem;
   font-weight: 600;
   color: #64748b;
-  background: rgba(99, 102, 241, 0.06);
+  background: rgba(59, 130, 246, 0.06);
   padding: 2px 8px;
   border-radius: 4px;
 }

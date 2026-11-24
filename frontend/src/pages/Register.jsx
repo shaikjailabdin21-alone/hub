@@ -1,6 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import '../styles/auth.css';
+
+const getPasswordStrength = (pw) => {
+  if (!pw) return { level: 0, label: '', cls: '' };
+  let score = 0;
+  if (pw.length >= 6) score++;
+  if (pw.length >= 8) score++;
+  if (/[A-Z]/.test(pw) && /[a-z]/.test(pw)) score++;
+  if (/[0-9]/.test(pw)) score++;
+  if (/[^A-Za-z0-9]/.test(pw)) score++;
+  if (score <= 1) return { level: 1, label: 'Weak', cls: 'weak' };
+  if (score <= 2) return { level: 2, label: 'Fair', cls: 'fair' };
+  if (score <= 3) return { level: 3, label: 'Good', cls: 'good' };
+  return { level: 4, label: 'Strong', cls: 'strong' };
+};
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -8,35 +23,24 @@ const Register = () => {
     email: '',
     password: '',
     confirmPassword: '',
-    college: 'State University of Technology',
-    branch: 'Computer Science and Engineering',
-    year: '1st Year',
-    semester: '1st Semester',
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const [formError, setFormError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
-  const { register } = useAuth();
+  const { register, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/dashboard', { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleFillDemoData = () => {
-    const randomSuffix = Math.floor(1000 + Math.random() * 9000);
-    setFormData({
-      name: 'Jordan Hayes',
-      email: `jordan.hayes${randomSuffix}@hub.edu`,
-      password: 'password123',
-      confirmPassword: 'password123',
-      college: 'Global Institute of Engineering',
-      branch: 'Computer Science & AI',
-      year: '3rd Year',
-      semester: '5th Semester',
-    });
-    setFormError('');
   };
 
   const handleSubmit = async (e) => {
@@ -47,271 +51,212 @@ const Register = () => {
       setFormError('Please enter your full name.');
       return;
     }
-
     if (!formData.email.trim()) {
+      setFormError('Please enter your email address.');
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email.trim())) {
       setFormError('Please enter a valid email address.');
       return;
     }
-
     if (!formData.password) {
       setFormError('Please enter a password.');
       return;
     }
-
     if (formData.password.length < 6) {
       setFormError('Password must be at least 6 characters long.');
       return;
     }
-
     if (formData.password !== formData.confirmPassword) {
-      setFormError('Passwords do not match. Please verify.');
+      setFormError('Passwords do not match.');
       return;
     }
 
     setSubmitting(true);
     try {
       await register(formData);
-      navigate('/dashboard');
+      navigate('/dashboard', { replace: true });
     } catch (err) {
-      console.error('[Register.jsx] Submission failed:', err);
       setFormError(err.message || 'Registration failed. Please try again.');
     } finally {
       setSubmitting(false);
     }
   };
 
-  return (
-    <div
-      className="animate-fade-in"
-      style={{
-        minHeight: '85vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '2.5rem 1rem',
-      }}
-    >
-      <div
-        className="glass-card"
-        style={{
-          maxWidth: '580px',
-          width: '100%',
-          padding: '2.5rem',
-          boxShadow: '0 16px 40px -8px rgba(15, 23, 42, 0.1)',
-        }}
-      >
-        <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
-          <div
-            style={{
-              width: '56px',
-              height: '56px',
-              background: 'var(--accent-gradient)',
-              borderRadius: 'var(--radius-md)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              margin: '0 auto 1rem',
-              fontSize: '1.7rem',
-              color: '#ffffff',
-              boxShadow: '0 6px 16px rgba(37, 99, 235, 0.3)',
-            }}
-          >
-            🎓
-          </div>
-          <h2 style={{ fontSize: '1.9rem', marginBottom: '0.4rem', fontWeight: 800, color: 'var(--text-primary)' }}>
-            Create Student Profile
-          </h2>
-          <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-            Join Hub Learning to track your technical curricula, take quizzes, and build projects.
-          </p>
+  const strength = getPasswordStrength(formData.password);
 
-          <button
-            type="button"
-            onClick={handleFillDemoData}
-            className="btn-outline"
-            style={{
-              marginTop: '1rem',
-              fontSize: '0.8rem',
-              padding: '0.35rem 0.85rem',
-              borderRadius: 'var(--radius-full)',
-            }}
-          >
-            ⚡ Auto-Fill Sample Student Data
-          </button>
+  return (
+    <div className="auth-page-wrapper">
+      <div className="auth-cyber-bg" aria-hidden="true">
+        <div className="auth-orb auth-orb-1" />
+        <div className="auth-orb auth-orb-2" />
+        <div className="auth-orb auth-orb-3" />
+        <div className="auth-scanline" />
+        <div className="auth-particle" />
+        <div className="auth-particle" />
+        <div className="auth-particle" />
+        <div className="auth-particle" />
+        <div className="auth-particle" />
+        <div className="auth-particle" />
+      </div>
+
+      <div className="auth-glass-card auth-card-wide">
+        {/* Brand */}
+        <div className="auth-brand">
+          <div className="auth-logo-ring">
+            <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
+              <path d="M30 25h12v20h16V25h12v50H58V55H42v20H30V25z" fill="white" />
+            </svg>
+          </div>
+          <div className="auth-brand-tag">HUB LEARNING</div>
+          <h1 className="auth-heading">
+            <span className="auth-heading-glow">Create Account</span>
+          </h1>
+          <p className="auth-subtitle">Join HUB Learning and start your journey</p>
         </div>
 
+        {/* Error */}
         {formError && (
-          <div
-            style={{
-              background: '#fef2f2',
-              border: '1px solid #fecaca',
-              color: '#b91c1c',
-              padding: '0.75rem 1rem',
-              borderRadius: 'var(--radius-sm)',
-              marginBottom: '1.5rem',
-              fontSize: '0.88rem',
-              fontWeight: 500,
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-            }}
-          >
-            <span>⚠️</span>
+          <div className="auth-alert auth-alert-error">
+            <span className="auth-alert-icon">⚠️</span>
             <span>{formError}</span>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
-          {/* 1. Full Name */}
-          <div>
-            <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
-              Full Name <span style={{ color: 'var(--accent)' }}>*</span>
+        {/* Form */}
+        <form className="auth-form" onSubmit={handleSubmit} noValidate>
+          {/* Full Name */}
+          <div className="auth-form-group">
+            <label className="auth-label">
+              Full Name <span className="auth-label-star">*</span>
             </label>
-            <input
-              type="text"
-              name="name"
-              placeholder="e.g. Alex Mercer"
-              value={formData.name}
-              onChange={handleChange}
-              style={{ width: '100%' }}
-              required
-            />
-          </div>
-
-          {/* 2. Email Address */}
-          <div>
-            <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
-              Email Address <span style={{ color: 'var(--accent)' }}>*</span>
-            </label>
-            <input
-              type="email"
-              name="email"
-              placeholder="alex@university.edu"
-              value={formData.email}
-              onChange={handleChange}
-              style={{ width: '100%' }}
-              required
-            />
-          </div>
-
-          {/* 3 & 4. Password and Confirm Password */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
-            <div>
-              <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
-                Password (min 6 chars) <span style={{ color: 'var(--accent)' }}>*</span>
-              </label>
-              <input
-                type="password"
-                name="password"
-                placeholder="••••••••••••"
-                value={formData.password}
-                onChange={handleChange}
-                style={{ width: '100%' }}
-                required
-              />
-            </div>
-            <div>
-              <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
-                Confirm Password <span style={{ color: 'var(--accent)' }}>*</span>
-              </label>
-              <input
-                type="password"
-                name="confirmPassword"
-                placeholder="••••••••••••"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                style={{ width: '100%' }}
-                required
-              />
-            </div>
-          </div>
-
-          {/* 5 & 6. College and Major / Branch */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
-            <div>
-              <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
-                College / University <span style={{ color: 'var(--accent)' }}>*</span>
-              </label>
+            <div className="auth-input-wrap">
               <input
                 type="text"
-                name="college"
-                placeholder="e.g. State Institute of Tech"
-                value={formData.college}
+                className="auth-input"
+                name="name"
+                placeholder="e.g. Alex Johnson"
+                value={formData.name}
                 onChange={handleChange}
-                style={{ width: '100%' }}
+                autoComplete="name"
+                autoFocus
                 required
               />
+              <span className="auth-input-glyph">👤</span>
             </div>
-            <div>
-              <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
-                Branch / Department <span style={{ color: 'var(--accent)' }}>*</span>
-              </label>
+          </div>
+
+          {/* Email */}
+          <div className="auth-form-group">
+            <label className="auth-label">
+              Email Address <span className="auth-label-star">*</span>
+            </label>
+            <div className="auth-input-wrap">
               <input
-                type="text"
-                name="branch"
-                placeholder="e.g. Computer Science & Eng"
-                value={formData.branch}
+                type="email"
+                className="auth-input"
+                name="email"
+                placeholder="you@example.com"
+                value={formData.email}
                 onChange={handleChange}
-                style={{ width: '100%' }}
+                autoComplete="email"
                 required
               />
+              <span className="auth-input-glyph">✉</span>
             </div>
           </div>
 
-          {/* 7 & 8. Year of Study and Semester */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
-            <div>
-              <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
-                Year of Study <span style={{ color: 'var(--accent)' }}>*</span>
+          {/* Password & Confirm */}
+          <div className="auth-form-row">
+            <div className="auth-form-group">
+              <label className="auth-label">
+                Password <span className="auth-label-star">*</span>
               </label>
-              <select
-                name="year"
-                value={formData.year}
-                onChange={handleChange}
-                style={{ width: '100%' }}
-              >
-                <option value="1st Year">1st Year (Freshman)</option>
-                <option value="2nd Year">2nd Year (Sophomore)</option>
-                <option value="3rd Year">3rd Year (Junior)</option>
-                <option value="4th Year">4th Year (Senior)</option>
-              </select>
+              <div className="auth-input-wrap">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  className="auth-input"
+                  name="password"
+                  placeholder="Min 6 characters"
+                  value={formData.password}
+                  onChange={handleChange}
+                  autoComplete="new-password"
+                  required
+                />
+                <span className="auth-input-glyph">🔒</span>
+                <button
+                  type="button"
+                  className="auth-pw-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                  tabIndex={-1}
+                >
+                  {showPassword ? '🙈' : '👁️'}
+                </button>
+              </div>
+              {formData.password && (
+                <>
+                  <div className="auth-pw-strength">
+                    {[1, 2, 3, 4].map((i) => (
+                      <div
+                        key={i}
+                        className={`auth-strength-seg ${i <= strength.level ? `on ${strength.cls}` : ''}`}
+                      />
+                    ))}
+                  </div>
+                  <div className={`auth-strength-label ${strength.cls}`}>
+                    {strength.label}
+                  </div>
+                </>
+              )}
             </div>
-            <div>
-              <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
-                Current Semester <span style={{ color: 'var(--accent)' }}>*</span>
+
+            <div className="auth-form-group">
+              <label className="auth-label">
+                Confirm Password <span className="auth-label-star">*</span>
               </label>
-              <select
-                name="semester"
-                value={formData.semester}
-                onChange={handleChange}
-                style={{ width: '100%' }}
-              >
-                <option value="1st Semester">1st Semester</option>
-                <option value="2nd Semester">2nd Semester</option>
-                <option value="3rd Semester">3rd Semester</option>
-                <option value="4th Semester">4th Semester</option>
-                <option value="5th Semester">5th Semester</option>
-                <option value="6th Semester">6th Semester</option>
-                <option value="7th Semester">7th Semester</option>
-                <option value="8th Semester">8th Semester</option>
-              </select>
+              <div className="auth-input-wrap">
+                <input
+                  type={showConfirm ? 'text' : 'password'}
+                  className="auth-input"
+                  name="confirmPassword"
+                  placeholder="Re-enter password"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  autoComplete="new-password"
+                  required
+                />
+                <span className="auth-input-glyph">🔒</span>
+                <button
+                  type="button"
+                  className="auth-pw-toggle"
+                  onClick={() => setShowConfirm(!showConfirm)}
+                  tabIndex={-1}
+                >
+                  {showConfirm ? '🙈' : '👁️'}
+                </button>
+              </div>
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="btn-primary"
-            style={{ width: '100%', padding: '0.85rem', marginTop: '0.85rem', fontSize: '0.98rem' }}
-            disabled={submitting}
-          >
-            {submitting ? 'Registering Account...' : 'Create Account & Begin Learning →'}
+          {/* Submit */}
+          <button type="submit" className="auth-submit-btn" disabled={submitting}>
+            {submitting ? (
+              <>
+                <span className="auth-btn-spinner" />
+                Creating Account...
+              </>
+            ) : (
+              <>Create Account →</>
+            )}
           </button>
         </form>
 
-        <div style={{ textAlign: 'center', marginTop: '1.75rem', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
+        {/* Footer */}
+        <div className="auth-footer">
           Already have an account?{' '}
-          <Link to="/login" style={{ color: 'var(--accent)', fontWeight: 700 }}>
-            Sign In here
+          <Link to="/login" className="auth-footer-link">
+            Sign In
           </Link>
         </div>
       </div>

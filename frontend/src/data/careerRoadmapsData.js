@@ -19,8 +19,8 @@ export const careerRoadmapsData = {
     icon: '💻',
     category: 'Core Software Engineering',
     tagline: 'Design, develop, test, and maintain robust software applications and systems.',
-    color: '#6c63ff',
-    gradient: 'linear-gradient(135deg, #6c63ff 0%, #3b82f6 100%)',
+    color: '#2563eb',
+    gradient: 'linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%)',
     description: 'A Software Developer focuses on computer science fundamentals, algorithm efficiency, object-oriented design, backend architecture, and problem-solving to build reliable, high-performance systems.',
     requiredSkills: [
       'Programming Fundamentals',

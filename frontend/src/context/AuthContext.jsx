@@ -14,9 +14,11 @@ export const AuthProvider = ({ children }) => {
     const storedToken = authService.getToken();
     const storedUser = authService.getCurrentUser();
 
-    if (storedToken && storedUser) {
+    if (storedToken) {
       setToken(storedToken);
-      setUser(storedUser);
+      if (storedUser) {
+        setUser(storedUser);
+      }
 
       // Verify token with backend
       authService
@@ -24,14 +26,23 @@ export const AuthProvider = ({ children }) => {
         .then((res) => {
           if (res && res.user) {
             setUser(res.user);
+            localStorage.setItem('hub_user_profile', JSON.stringify(res.user));
           }
         })
         .catch((err) => {
-          console.warn('[AuthContext] Verification failed, user session expired:', err.message);
-          // If token was rejected by server, logout
-          if (err.response && err.response.status === 401) {
-            logout();
+          console.warn('[AuthContext] Token verification failed:', err.message);
+
+          // Determine if this is a real auth rejection vs network/server error
+          const status = err.response?.status;
+          if (status === 401 || status === 403) {
+            // Token is invalid/expired — force logout
+            authService.logout();
+            setUser(null);
+            setToken(null);
           }
+          // For network errors (backend down) or 5xx — keep the stored user/token
+          // so the UI doesn't flicker to login when the backend is temporarily unreachable
+          // but the token might still be valid.
         })
         .finally(() => {
           setLoading(false);
@@ -50,7 +61,7 @@ export const AuthProvider = ({ children }) => {
       setToken(data.token);
       return data;
     } catch (err) {
-      const msg = err.response?.data?.message || err.message || 'Login failed. Please check your credentials.';
+      const msg = err.message || 'Login failed. Please check your credentials.';
       setError(msg);
       throw new Error(msg);
     } finally {
@@ -67,7 +78,7 @@ export const AuthProvider = ({ children }) => {
       setToken(data.token);
       return data;
     } catch (err) {
-      const msg = err.response?.data?.message || err.message || 'Registration failed. Please check all fields.';
+      const msg = err.message || 'Registration failed. Please check all fields.';
       setError(msg);
       throw new Error(msg);
     } finally {

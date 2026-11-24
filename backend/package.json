@@ -18,7 +18,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^7.7.0",
     "mongodb-memory-server": "^9.4.0",
-    "mongoose": "^8.24.5",
+    "mongoose": "^8.24.11",
     "node-cron": "^4.6.0",
     "nodemailer": "^10.0.13"
   }

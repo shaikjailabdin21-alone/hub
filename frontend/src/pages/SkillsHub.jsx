@@ -163,16 +163,16 @@ const SkillsHub = () => {
 
               <div
                 style={{
-                  background: '#fffbeb',
-                  border: '1px solid #fef3c7',
+                  background: 'rgba(15, 23, 42, 0.75)',
+                  border: '1px solid rgba(59, 130, 246, 0.25)',
                   borderRadius: 'var(--radius-md)',
                   padding: '1.25rem',
                 }}
               >
-                <h4 style={{ color: '#b45309', marginBottom: '0.4rem' }}>
+                <h4 style={{ color: '#38bdf8', marginBottom: '0.4rem' }}>
                   🌱 Beginner Explanation
                 </h4>
-                <p style={{ fontSize: '0.95rem', color: '#78350f' }}>{selectedSkill.beginnerExplanation}</p>
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)' }}>{selectedSkill.beginnerExplanation}</p>
               </div>
 
               <div>
@@ -204,8 +204,8 @@ const SkillsHub = () => {
 
               <div
                 style={{
-                  background: '#eff6ff',
-                  border: '1px solid #bfdbfe',
+                  background: 'rgba(10, 20, 48, 0.75)',
+                  border: '1px solid rgba(59, 130, 246, 0.3)',
                   borderRadius: 'var(--radius-md)',
                   padding: '1.25rem',
                 }}

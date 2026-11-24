@@ -162,9 +162,9 @@ const ProjectHub = () => {
       {alertNotice && (
         <div
           style={{
-            background: '#fef2f2',
-            border: '1px solid #fecaca',
-            color: '#991b1b',
+            background: 'rgba(239, 68, 68, 0.12)',
+            border: '1px solid rgba(239, 68, 68, 0.35)',
+            color: '#f87171',
             padding: '1rem 1.25rem',
             borderRadius: 'var(--radius-md)',
             marginBottom: '1.5rem',
@@ -179,7 +179,7 @@ const ProjectHub = () => {
           <button
             type="button"
             onClick={() => setAlertNotice('')}
-            style={{ background: 'transparent', border: 'none', color: '#991b1b', cursor: 'pointer', fontSize: '1.1rem' }}
+            style={{ background: 'transparent', border: 'none', color: '#f87171', cursor: 'pointer', fontSize: '1.1rem' }}
           >
             ✕
           </button>
@@ -251,13 +251,13 @@ const ProjectHub = () => {
         className="continue-learning-section"
         style={{
           marginBottom: '2rem',
-          background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
-          border: '1px solid #bfdbfe',
+          background: 'linear-gradient(135deg, rgba(8, 18, 48, 0.95) 0%, rgba(12, 26, 68, 0.9) 50%, rgba(3, 7, 20, 0.98) 100%)',
+          border: '1px solid rgba(59, 130, 246, 0.35)',
           boxShadow: 'var(--card-shadow)',
         }}
       >
         <div className="continue-left">
-          <div className="continue-icon" style={{ background: '#dbeafe', color: 'var(--accent)' }}>
+          <div className="continue-icon" style={{ background: 'rgba(37, 99, 235, 0.18)', color: 'var(--accent)' }}>
             {isAdmin ? '🛡️' : '📁'}
           </div>
           <div>
@@ -414,7 +414,7 @@ const ProjectHub = () => {
                   <span>{editingProjectId ? '✏️ Edit Project' : '🚀 Add & Insert New Project'}</span>
                 </h2>
                 {isFullFrameEditor && (
-                  <span style={{ fontSize: '0.72rem', background: 'rgba(108, 99, 255, 0.2)', color: '#c4b5fd', padding: '0.2rem 0.5rem', borderRadius: '4px', border: '1px solid rgba(108, 99, 255, 0.3)' }}>
+                  <span style={{ fontSize: '0.72rem', background: 'rgba(37, 99, 235, 0.18)', color: '#93c5fd', padding: '0.2rem 0.5rem', borderRadius: '4px', border: '1px solid rgba(59, 130, 246, 0.35)' }}>
                     Full Frame Workspace
                   </span>
                 )}
@@ -432,7 +432,7 @@ const ProjectHub = () => {
                     alignItems: 'center',
                     gap: '0.35rem',
                     borderColor: 'var(--accent)',
-                    color: '#c4b5fd',
+                    color: '#93c5fd',
                   }}
                   title="Test & Preview this project in Full Frame Viewer now"
                 >
@@ -667,7 +667,7 @@ const ProjectHub = () => {
                           src={formData.demoUrl}
                           title="Preview Frame"
                           sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-                          style={{ width: '100%', height: '100%', border: 'none', background: '#fff' }}
+                          style={{ width: '100%', height: '100%', border: 'none', background: '#020617' }}
                         />
                       ) : (
                         <div
@@ -682,11 +682,11 @@ const ProjectHub = () => {
                           }}
                         >
                           <div style={{ fontSize: '2.5rem', marginBottom: '0.75rem' }}>🖥️</div>
-                          <h4 style={{ color: '#0f172a', margin: '0 0 0.4rem', fontWeight: 800, fontSize: '1.1rem' }}>
+                          <h4 style={{ color: 'var(--text-primary)', margin: '0 0 0.4rem', fontWeight: 800, fontSize: '1.1rem' }}>
                             {formData.title || 'Untitled Project'}
                           </h4>
-                          <p style={{ color: '#475569', fontSize: '0.86rem', maxWidth: '340px', lineHeight: '1.55' }}>
-                            Add a <strong style={{ color: '#0f172a' }}>Live Demo Link</strong> above to stream the project in this full frame stage. Or click <strong style={{ color: '#2563eb' }}>Preview Full Frame</strong> to test the standalone interactive viewer.
+                          <p style={{ color: 'var(--text-secondary)', fontSize: '0.86rem', maxWidth: '340px', lineHeight: '1.55' }}>
+                            Add a <strong style={{ color: 'var(--text-primary)' }}>Live Demo Link</strong> above to stream the project in this full frame stage. Or click <strong style={{ color: '#60a5fa' }}>Preview Full Frame</strong> to test the standalone interactive viewer.
                           </p>
                         </div>
                       )}

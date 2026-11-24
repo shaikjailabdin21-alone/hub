@@ -1,7 +1,7 @@
 /* Pulse and Glow Keyframes */
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(108, 99, 255, 0.4);
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
   }
   50% {
     box-shadow: 0 0 30px rgba(0, 212, 255, 0.7);

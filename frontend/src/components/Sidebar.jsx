@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Link, useLocation } from 'react-router-dom';
+import { NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { useProgress } from '../hooks/useProgress';
 import { developerTools } from '../data/developerToolsData';
@@ -20,6 +20,7 @@ const Sidebar = ({ isOpen, onClose }) => {
   const { user, isAuthenticated, isAdmin, logout } = useAuth();
   const { progress } = useProgress();
   const location = useLocation();
+  const navigate = useNavigate();
   const [devToolsActive, setDevToolsActive] = React.useState(false);
 
   React.useEffect(() => {
@@ -75,7 +76,7 @@ const Sidebar = ({ isOpen, onClose }) => {
       >
         {/* Top: Logo & Website Brand */}
         <div className="sidebar-header">
-          <Link to="/" className="sidebar-brand" onClick={handleLinkClick}>
+          <Link to="/dashboard" className="sidebar-brand" onClick={handleLinkClick}>
             <div className="sidebar-logo-icon">
               <svg width="30" height="30" viewBox="0 0 100 100" fill="none">
                 <defs>
@@ -199,7 +200,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                 >
                   <span>🛡️</span>
                   <span>Admin Dashboard</span>
-                  <span style={{ marginLeft: 'auto', fontSize: '0.65rem', background: '#ec4899', color: '#fff', padding: '0.1rem 0.35rem', borderRadius: '4px' }}>LIVE</span>
+                  <span style={{ marginLeft: 'auto', fontSize: '0.65rem', background: 'rgba(37, 99, 235, 0.25)', color: '#60a5fa', border: '1px solid rgba(59, 130, 246, 0.4)', padding: '0.1rem 0.35rem', borderRadius: '4px', fontWeight: 700 }}>LIVE</span>
                 </Link>
               )}
               <button
@@ -208,6 +209,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                 onClick={() => {
                   logout();
                   handleLinkClick();
+                  navigate('/login');
                 }}
               >
                 <span>🚪</span> Sign Out

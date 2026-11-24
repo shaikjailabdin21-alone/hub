@@ -92,8 +92,8 @@ const AdminDashboard = () => {
       {/* Top Header Banner */}
       <div
         style={{
-          background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
-          border: '1px solid #bfdbfe',
+          background: 'linear-gradient(135deg, rgba(8, 18, 48, 0.95) 0%, rgba(12, 26, 68, 0.9) 50%, rgba(3, 7, 20, 0.98) 100%)',
+          border: '1px solid rgba(59, 130, 246, 0.35)',
           borderRadius: 'var(--radius-lg)',
           padding: '2rem 2.5rem',
           marginBottom: '2rem',
@@ -102,7 +102,7 @@ const AdminDashboard = () => {
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: '1.5rem',
-          boxShadow: '0 4px 20px rgba(37, 99, 235, 0.06)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
         }}
       >
         <div>
@@ -178,9 +178,9 @@ const AdminDashboard = () => {
             padding: '1rem 1.25rem',
             marginBottom: '1.5rem',
             borderRadius: 'var(--radius-sm)',
-            background: dispatchStatus.success ? '#f0fdf4' : '#fef2f2',
-            border: `1px solid ${dispatchStatus.success ? '#bbf7d0' : '#fecaca'}`,
-            color: dispatchStatus.success ? '#166534' : '#991b1b',
+            background: dispatchStatus.success ? 'rgba(34, 197, 94, 0.12)' : 'rgba(239, 68, 68, 0.12)',
+            border: `1px solid ${dispatchStatus.success ? 'rgba(34, 197, 94, 0.35)' : 'rgba(239, 68, 68, 0.35)'}`,
+            color: dispatchStatus.success ? '#4ade80' : '#f87171',
             fontSize: '0.92rem',
             fontWeight: 500,
             display: 'flex',
@@ -199,9 +199,9 @@ const AdminDashboard = () => {
             padding: '1rem 1.25rem',
             marginBottom: '1.5rem',
             borderRadius: 'var(--radius-sm)',
-            background: '#fef2f2',
-            border: '1px solid #fecaca',
-            color: '#991b1b',
+            background: 'rgba(239, 68, 68, 0.12)',
+            border: '1px solid rgba(239, 68, 68, 0.35)',
+            color: '#f87171',
             fontSize: '0.92rem',
             fontWeight: 500,
           }}
@@ -253,7 +253,7 @@ const AdminDashboard = () => {
                   fontSize: '0.72rem',
                   padding: '0.15rem 0.5rem',
                   borderRadius: '999px',
-                  background: activeTab === tab.id ? 'var(--accent)' : '#e2e8f0',
+                  background: activeTab === tab.id ? 'var(--accent)' : 'rgba(15, 23, 42, 0.6)',
                   color: activeTab === tab.id ? '#ffffff' : 'var(--text-secondary)',
                   fontWeight: 700,
                 }}
@@ -295,7 +295,7 @@ const AdminDashboard = () => {
               <div style={{ fontSize: '2.25rem', fontWeight: 800, color: 'var(--text-primary)', margin: '0.4rem 0' }}>
                 {stats.totalRegisteredUsers}
               </div>
-              <div style={{ color: '#16a34a', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600 }}>
+              <div style={{ color: '#4ade80', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600 }}>
                 <span>●</span> Real database accounts
               </div>
             </div>
@@ -304,7 +304,7 @@ const AdminDashboard = () => {
               <div style={{ color: 'var(--text-muted)', fontSize: '0.8rem', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.5px' }}>
                 New Users (This Week)
               </div>
-              <div style={{ fontSize: '2.25rem', fontWeight: 800, color: '#16a34a', margin: '0.4rem 0' }}>
+              <div style={{ fontSize: '2.25rem', fontWeight: 800, color: '#4ade80', margin: '0.4rem 0' }}>
                 +{stats.newUsersThisWeek}
               </div>
               <div style={{ color: 'var(--text-secondary)', fontSize: '0.82rem', fontWeight: 500 }}>
@@ -328,7 +328,7 @@ const AdminDashboard = () => {
               <div style={{ color: 'var(--text-muted)', fontSize: '0.8rem', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.5px' }}>
                 Total Platform Logins
               </div>
-              <div style={{ fontSize: '2.25rem', fontWeight: 800, color: '#d97706', margin: '0.4rem 0' }}>
+              <div style={{ fontSize: '2.25rem', fontWeight: 800, color: '#fbbf24', margin: '0.4rem 0' }}>
                 {stats.totalLogins}
               </div>
               <div style={{ color: 'var(--text-secondary)', fontSize: '0.82rem', fontWeight: 500 }}>
@@ -389,7 +389,7 @@ const AdminDashboard = () => {
                 <span style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', fontWeight: 600 }}>Technical Hub</span>
                 <span style={{ fontSize: '1.3rem' }}>🖥️</span>
               </div>
-              <div style={{ fontSize: '1.85rem', fontWeight: 800, color: '#2563eb', marginTop: '0.5rem' }}>
+              <div style={{ fontSize: '1.85rem', fontWeight: 800, color: '#3b82f6', marginTop: '0.5rem' }}>
                 {stats.technicalHubUsage}
               </div>
               <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>Lesson visits & curricula reads</div>
@@ -400,7 +400,7 @@ const AdminDashboard = () => {
                 <span style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', fontWeight: 600 }}>Coding Hub</span>
                 <span style={{ fontSize: '1.3rem' }}>💻</span>
               </div>
-              <div style={{ fontSize: '1.85rem', fontWeight: 800, color: '#059669', marginTop: '0.5rem' }}>
+              <div style={{ fontSize: '1.85rem', fontWeight: 800, color: '#4ade80', marginTop: '0.5rem' }}>
                 {stats.codingHubUsage}
               </div>
               <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>Problem executions & submissions</div>
@@ -411,7 +411,7 @@ const AdminDashboard = () => {
                 <span style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', fontWeight: 600 }}>Developer Tools</span>
                 <span style={{ fontSize: '1.3rem' }}>🛠️</span>
               </div>
-              <div style={{ fontSize: '1.85rem', fontWeight: 800, color: '#0284c7', marginTop: '0.5rem' }}>
+              <div style={{ fontSize: '1.85rem', fontWeight: 800, color: '#0ea5e9', marginTop: '0.5rem' }}>
                 {stats.developerToolsUsage}
               </div>
               <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>Tool drawer & toolkit opens</div>
@@ -422,7 +422,7 @@ const AdminDashboard = () => {
                 <span style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', fontWeight: 600 }}>Project Views</span>
                 <span style={{ fontSize: '1.3rem' }}>📁</span>
               </div>
-              <div style={{ fontSize: '1.85rem', fontWeight: 800, color: '#7c3aed', marginTop: '0.5rem' }}>
+              <div style={{ fontSize: '1.85rem', fontWeight: 800, color: '#60a5fa', marginTop: '0.5rem' }}>
                 {stats.projectViews}
               </div>
               <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>Portfolio & showcase views</div>
@@ -433,7 +433,7 @@ const AdminDashboard = () => {
                 <span style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', fontWeight: 600 }}>Career Hub</span>
                 <span style={{ fontSize: '1.3rem' }}>🎯</span>
               </div>
-              <div style={{ fontSize: '1.85rem', fontWeight: 800, color: '#d97706', marginTop: '0.5rem' }}>
+              <div style={{ fontSize: '1.85rem', fontWeight: 800, color: '#fbbf24', marginTop: '0.5rem' }}>
                 {stats.careerHubUsage}
               </div>
               <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>Roadmaps, skills & gaps tracked</div>
@@ -544,7 +544,7 @@ const AdminDashboard = () => {
           >
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.88rem' }}>
               <thead>
-                <tr style={{ background: '#f8fafc', borderBottom: '1px solid var(--border)' }}>
+                <tr style={{ background: 'rgba(10, 20, 48, 0.9)', borderBottom: '1px solid rgba(59, 130, 246, 0.25)' }}>
                   <th style={{ padding: '1rem 1.25rem', color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.8rem', textTransform: 'uppercase' }}>User Name</th>
                   <th style={{ padding: '1rem 1.25rem', color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.8rem', textTransform: 'uppercase' }}>Email Address</th>
                   <th style={{ padding: '1rem 1.25rem', color: 'var(--text-muted)', fontWeight: 600, fontSize: '0.8rem', textTransform: 'uppercase' }}>Registration Date</th>
@@ -577,13 +577,13 @@ const AdminDashboard = () => {
                               width: '32px',
                               height: '32px',
                               borderRadius: '50%',
-                              background: u.role === 'admin' ? 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)' : '#eff6ff',
-                              border: u.role === 'admin' ? 'none' : '1px solid #bfdbfe',
+                              background: u.role === 'admin' ? 'linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%)' : 'rgba(37, 99, 235, 0.15)',
+                              border: u.role === 'admin' ? 'none' : '1px solid rgba(59, 130, 246, 0.3)',
                               display: 'inline-flex',
                               alignItems: 'center',
                               justifyContent: 'center',
                               fontSize: '0.82rem',
-                              color: u.role === 'admin' ? '#fff' : '#2563eb',
+                              color: u.role === 'admin' ? '#fff' : '#60a5fa',
                               fontWeight: 700,
                             }}
                           >
@@ -603,7 +603,7 @@ const AdminDashboard = () => {
                       <td style={{ padding: '1rem 1.25rem', color: 'var(--text-secondary)' }}>
                         {formatDate(u.lastLogin)}
                       </td>
-                      <td style={{ padding: '1rem 1.25rem', color: '#16a34a', fontWeight: 500 }}>
+                      <td style={{ padding: '1rem 1.25rem', color: '#4ade80', fontWeight: 500 }}>
                         {formatDate(u.lastActive)}
                       </td>
                       <td style={{ padding: '1rem 1.25rem' }}>
@@ -618,9 +618,9 @@ const AdminDashboard = () => {
                                 fontSize: '0.72rem',
                                 padding: '0.2rem 0.5rem',
                                 borderRadius: '4px',
-                                background: '#eff6ff',
-                                color: '#1d4ed8',
-                                border: '1px solid #dbeafe',
+                                background: 'rgba(37, 99, 235, 0.15)',
+                                color: '#93c5fd',
+                                border: '1px solid rgba(59, 130, 246, 0.3)',
                                 fontWeight: 500,
                               }}
                             >
@@ -636,9 +636,9 @@ const AdminDashboard = () => {
                             fontWeight: 700,
                             padding: '0.25rem 0.65rem',
                             borderRadius: '999px',
-                            background: u.role === 'admin' ? '#eff6ff' : '#f0fdf4',
-                            color: u.role === 'admin' ? '#2563eb' : '#16a34a',
-                            border: `1px solid ${u.role === 'admin' ? '#bfdbfe' : '#bbf7d0'}`,
+                            background: u.role === 'admin' ? 'rgba(37, 99, 235, 0.2)' : 'rgba(34, 197, 94, 0.15)',
+                            color: u.role === 'admin' ? '#93c5fd' : '#4ade80',
+                            border: `1px solid ${u.role === 'admin' ? 'rgba(59, 130, 246, 0.35)' : 'rgba(34, 197, 94, 0.35)'}`,
                           }}
                         >
                           {u.role === 'admin' ? 'Admin' : 'Student'}
@@ -669,14 +669,14 @@ const AdminDashboard = () => {
               activities.map((act) => {
                 const typeColor =
                   act.type === 'registration'
-                    ? '#16a34a'
+                    ? '#4ade80'
                     : act.type === 'login' || act.type === 'first_login'
-                    ? '#0284c7'
+                    ? '#38bdf8'
                     : act.type === 'coding_hub'
-                    ? '#059669'
+                    ? '#60a5fa'
                     : act.type === 'project_view' || act.type === 'project_manage'
-                    ? '#7c3aed'
-                    : '#d97706';
+                    ? '#818cf8'
+                    : '#fbbf24';
 
                 return (
                   <div
@@ -759,7 +759,7 @@ const AdminDashboard = () => {
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.6rem' }}>
                     <span style={{ fontSize: '0.78rem', color: 'var(--accent)', fontWeight: 700, textTransform: 'uppercase' }}>{proj.category}</span>
-                    <span style={{ fontSize: '0.72rem', padding: '0.15rem 0.55rem', borderRadius: '999px', background: '#f0fdf4', color: '#16a34a', border: '1px solid #bbf7d0', fontWeight: 600 }}>
+                    <span style={{ fontSize: '0.72rem', padding: '0.15rem 0.55rem', borderRadius: '999px', background: 'rgba(34, 197, 94, 0.15)', color: '#4ade80', border: '1px solid rgba(34, 197, 94, 0.3)', fontWeight: 600 }}>
                       {proj.status || 'Active'}
                     </span>
                   </div>
@@ -769,7 +769,7 @@ const AdminDashboard = () => {
                   </p>
                   <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
                     {proj.technologies?.map((tech, i) => (
-                      <span key={i} style={{ fontSize: '0.72rem', padding: '0.15rem 0.5rem', borderRadius: '4px', background: '#eff6ff', color: '#1d4ed8', border: '1px solid #dbeafe', fontWeight: 500 }}>
+                      <span key={i} style={{ fontSize: '0.72rem', padding: '0.15rem 0.5rem', borderRadius: '4px', background: 'rgba(37, 99, 235, 0.15)', color: '#93c5fd', border: '1px solid rgba(59, 130, 246, 0.3)', fontWeight: 500 }}>
                         {tech}
                       </span>
                     ))}

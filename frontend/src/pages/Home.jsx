@@ -247,10 +247,11 @@ const Home = () => {
           style={{
             padding: '0.85rem 2.5rem',
             fontSize: '1.05rem',
-            background: '#ffffff',
-            color: 'var(--accent)',
+            background: '#040b1e',
+            color: '#60a5fa',
             fontWeight: 700,
-            border: 'none',
+            border: '1px solid rgba(59, 130, 246, 0.45)',
+            boxShadow: '0 4px 14px rgba(0, 0, 0, 0.4)',
           }}
         >
           Create Free Student Account 🚀

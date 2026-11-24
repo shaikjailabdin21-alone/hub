@@ -133,9 +133,16 @@ const updateProgress = async (req, res) => {
     const updateDoc = { $set: setFields };
 
     if (quizScore !== undefined && quizScore !== null) {
-      setFields.quizScore = Number(quizScore);
-      if (quizTotal) setFields.quizTotal = Number(quizTotal);
-      setFields.percentage = Math.round((Number(quizScore) / (Number(quizTotal) || 100)) * 100);
+      const scoreNum = Number(quizScore);
+      const totalNum = Number(quizTotal) || 100;
+      setFields.quizScore = scoreNum;
+      if (quizTotal !== undefined && quizTotal !== null) {
+        setFields.quizTotal = totalNum;
+      }
+      const calculatedPct = totalNum > 0 && scoreNum <= totalNum
+        ? Math.round((scoreNum / totalNum) * 100)
+        : Math.min(100, Math.round(scoreNum));
+      setFields.percentage = Math.min(100, Math.max(0, calculatedPct));
       updateDoc.$inc = { attempts: 1 };
     }
 

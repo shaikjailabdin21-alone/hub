@@ -527,7 +527,7 @@ const CareerHub = () => {
       </div>
 
       {saveMessage && (
-        <div style={{ padding: '0.75rem 1rem', background: '#f0fdf4', border: '1px solid #86efac', borderRadius: 'var(--radius-sm)', color: '#166534', marginBottom: '1.5rem', fontSize: '0.88rem', fontWeight: 600 }}>
+        <div style={{ padding: '0.75rem 1rem', background: 'rgba(34, 197, 94, 0.12)', border: '1px solid rgba(34, 197, 94, 0.35)', borderRadius: 'var(--radius-sm)', color: '#4ade80', marginBottom: '1.5rem', fontSize: '0.88rem', fontWeight: 600 }}>
           ✓ {saveMessage}
         </div>
       )}
@@ -634,7 +634,7 @@ const CareerHub = () => {
                           width: '32px',
                           height: '32px',
                           borderRadius: '50%',
-                          background: stageIdx === 0 ? 'var(--accent)' : stageIdx === 1 ? '#0284c7' : stageIdx === 2 ? '#9333ea' : '#16a34a',
+                          background: stageIdx === 0 ? 'var(--accent)' : stageIdx === 1 ? '#0284c7' : stageIdx === 2 ? '#2563eb' : '#0ea5e9',
                           color: '#ffffff',
                           fontWeight: 800,
                           fontSize: '0.88rem',
@@ -682,7 +682,7 @@ const CareerHub = () => {
                         >
                           <div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '0.4rem' }}>
-                              <h4 style={{ margin: 0, fontSize: '0.98rem', fontWeight: 700, color: isDone ? '#166534' : 'var(--text-primary)' }}>
+                              <h4 style={{ margin: 0, fontSize: '0.98rem', fontWeight: 700, color: isDone ? '#4ade80' : 'var(--text-primary)' }}>
                                 {isDone ? '✓ ' : ''}{skill.name}
                               </h4>
                               <input
@@ -771,7 +771,7 @@ const CareerHub = () => {
                 Target: {selectedCareer}
               </span>
               <div style={{ fontSize: '2.4rem', fontWeight: 900, color: 'var(--text-primary)', margin: '0.2rem 0' }}>
-                Career Readiness: <span style={{ color: skillGapData.readinessPct >= 70 ? '#16a34a' : skillGapData.readinessPct >= 40 ? '#d97706' : '#dc2626' }}>{skillGapData.readinessPct}%</span>
+                Career Readiness: <span style={{ color: skillGapData.readinessPct >= 70 ? '#4ade80' : skillGapData.readinessPct >= 40 ? '#fbbf24' : '#f87171' }}>{skillGapData.readinessPct}%</span>
               </div>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', margin: 0 }}>
                 Calculated from your verified completed skills ({skillGapData.completed.length} of {currentCareerData.requiredSkills.length} required skills).
@@ -785,7 +785,7 @@ const CareerHub = () => {
               </div>
               <ProgressBar value={skillGapData.readinessPct} height="10px" />
               <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginTop: '0.5rem', textAlign: 'center' }}>
-                Next Recommended: <strong style={{ color: '#d97706' }}>{skillGapData.nextSkill}</strong>
+                Next Recommended: <strong style={{ color: '#fbbf24' }}>{skillGapData.nextSkill}</strong>
               </div>
             </div>
           </div>
@@ -793,8 +793,8 @@ const CareerHub = () => {
           {/* 3-Column Skill Breakdown: Completed, Skills to Improve, Missing */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
             {/* Completed */}
-            <div style={{ background: 'var(--surface)', border: '1px solid #bbf7d0', borderRadius: 'var(--radius-md)', padding: '1.25rem', boxShadow: 'var(--card-shadow)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: '#16a34a' }}>
+            <div style={{ background: 'var(--surface)', border: '1px solid rgba(34, 197, 94, 0.3)', borderRadius: 'var(--radius-md)', padding: '1.25rem', boxShadow: 'var(--card-shadow)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: '#4ade80' }}>
                 <span style={{ fontSize: '1.2rem' }}>✅</span>
                 <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)' }}>Completed Skills ({skillGapData.completed.length})</h3>
               </div>
@@ -803,9 +803,9 @@ const CareerHub = () => {
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                   {skillGapData.completed.map((sk, idx) => (
-                    <div key={idx} style={{ padding: '0.6rem 0.8rem', background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 'var(--radius-sm)', fontSize: '0.85rem', color: '#166534', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div key={idx} style={{ padding: '0.6rem 0.8rem', background: 'rgba(34, 197, 94, 0.12)', border: '1px solid rgba(34, 197, 94, 0.3)', borderRadius: 'var(--radius-sm)', fontSize: '0.85rem', color: '#4ade80', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <span style={{ fontWeight: 600 }}>{sk}</span>
-                      <span style={{ fontSize: '0.75rem', color: '#15803d', fontWeight: 800 }}>VERIFIED</span>
+                      <span style={{ fontSize: '0.75rem', color: '#4ade80', fontWeight: 800 }}>VERIFIED</span>
                     </div>
                   ))}
                 </div>
@@ -813,8 +813,8 @@ const CareerHub = () => {
             </div>
 
             {/* Skills to Improve */}
-            <div style={{ background: 'var(--surface)', border: '1px solid #fde68a', borderRadius: 'var(--radius-md)', padding: '1.25rem', boxShadow: 'var(--card-shadow)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: '#d97706' }}>
+            <div style={{ background: 'var(--surface)', border: '1px solid rgba(251, 191, 36, 0.3)', borderRadius: 'var(--radius-md)', padding: '1.25rem', boxShadow: 'var(--card-shadow)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: '#fbbf24' }}>
                 <span style={{ fontSize: '1.2rem' }}>🟡</span>
                 <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)' }}>Skills to Improve ({skillGapData.improve.length})</h3>
               </div>
@@ -823,9 +823,9 @@ const CareerHub = () => {
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                   {skillGapData.improve.map((sk, idx) => (
-                    <div key={idx} style={{ padding: '0.6rem 0.8rem', background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 'var(--radius-sm)', fontSize: '0.85rem', color: '#92400e', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div key={idx} style={{ padding: '0.6rem 0.8rem', background: 'rgba(251, 191, 36, 0.1)', border: '1px solid rgba(251, 191, 36, 0.3)', borderRadius: 'var(--radius-sm)', fontSize: '0.85rem', color: '#fbbf24', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <span style={{ fontWeight: 600 }}>{sk}</span>
-                      <button type="button" onClick={() => handleToggleSkill(sk)} style={{ background: 'transparent', border: 'none', color: '#b45309', fontSize: '0.75rem', cursor: 'pointer', textDecoration: 'underline', fontWeight: 700 }}>
+                      <button type="button" onClick={() => handleToggleSkill(sk)} style={{ background: 'transparent', border: 'none', color: '#60a5fa', fontSize: '0.75rem', cursor: 'pointer', textDecoration: 'underline', fontWeight: 700 }}>
                         Mark Complete
                       </button>
                     </div>
@@ -835,19 +835,19 @@ const CareerHub = () => {
             </div>
 
             {/* Missing Skills */}
-            <div style={{ background: 'var(--surface)', border: '1px solid #fecaca', borderRadius: 'var(--radius-md)', padding: '1.25rem', boxShadow: 'var(--card-shadow)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: '#dc2626' }}>
+            <div style={{ background: 'var(--surface)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: 'var(--radius-md)', padding: '1.25rem', boxShadow: 'var(--card-shadow)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: '#f87171' }}>
                 <span style={{ fontSize: '1.2rem' }}>🔴</span>
                 <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)' }}>Missing Skills ({skillGapData.missing.length})</h3>
               </div>
               {skillGapData.missing.length === 0 ? (
-                <p style={{ color: '#16a34a', fontSize: '0.85rem', fontWeight: 600 }}>🎉 Congratulations! You have covered all required skills for this career!</p>
+                <p style={{ color: '#4ade80', fontSize: '0.85rem', fontWeight: 600 }}>🎉 Congratulations! You have covered all required skills for this career!</p>
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                   {skillGapData.missing.map((sk, idx) => (
-                    <div key={idx} style={{ padding: '0.6rem 0.8rem', background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 'var(--radius-sm)', fontSize: '0.85rem', color: '#991b1b', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div key={idx} style={{ padding: '0.6rem 0.8rem', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: 'var(--radius-sm)', fontSize: '0.85rem', color: '#fca5a5', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <span style={{ fontWeight: 600 }}>{sk}</span>
-                      <button type="button" onClick={() => handleToggleSkill(sk)} style={{ background: 'transparent', border: 'none', color: '#dc2626', fontSize: '0.75rem', cursor: 'pointer', textDecoration: 'underline', fontWeight: 700 }}>
+                      <button type="button" onClick={() => handleToggleSkill(sk)} style={{ background: 'transparent', border: 'none', color: '#60a5fa', fontSize: '0.75rem', cursor: 'pointer', textDecoration: 'underline', fontWeight: 700 }}>
                         Mark Learned
                       </button>
                     </div>
@@ -968,7 +968,7 @@ const CareerHub = () => {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.75rem' }}>
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.3rem' }}>
-                        <span style={{ fontSize: '0.75rem', fontWeight: 700, padding: '0.15rem 0.5rem', borderRadius: '4px', background: proj.difficulty === 'Beginner' ? '#f0fdf4' : proj.difficulty === 'Intermediate' ? '#eff6ff' : '#fdf2f8', color: proj.difficulty === 'Beginner' ? '#166534' : proj.difficulty === 'Intermediate' ? '#1e40af' : '#9d174d', border: '1px solid var(--border)' }}>
+                        <span style={{ fontSize: '0.75rem', fontWeight: 700, padding: '0.15rem 0.5rem', borderRadius: '4px', background: proj.difficulty === 'Beginner' ? 'rgba(34, 197, 94, 0.15)' : proj.difficulty === 'Intermediate' ? 'rgba(37, 99, 235, 0.15)' : 'rgba(236, 72, 153, 0.15)', color: proj.difficulty === 'Beginner' ? '#4ade80' : proj.difficulty === 'Intermediate' ? '#60a5fa' : '#f472b6', border: '1px solid var(--border)' }}>
                           {proj.difficulty} PROJECT
                         </span>
                         <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>• {proj.stage} Stage</span>
@@ -990,7 +990,7 @@ const CareerHub = () => {
                             borderRadius: '4px',
                             border: 'none',
                             cursor: 'pointer',
-                            background: currentStatus === status ? (status === 'Completed' ? '#16a34a' : status === 'In Progress' ? '#d97706' : '#64748b') : 'transparent',
+                            background: currentStatus === status ? (status === 'Completed' ? '#16a34a' : status === 'In Progress' ? '#2563eb' : '#475569') : 'transparent',
                             color: currentStatus === status ? '#ffffff' : 'var(--text-secondary)',
                             transition: 'all 0.15s',
                           }}
@@ -1020,7 +1020,7 @@ const CareerHub = () => {
                         </span>
                       ))}
                     </div>
-                    <span style={{ fontSize: '0.78rem', color: '#16a34a', fontWeight: 700 }}>
+                    <span style={{ fontSize: '0.78rem', color: '#4ade80', fontWeight: 700 }}>
                       Outcome: {proj.outcome}
                     </span>
                   </div>
@@ -1122,7 +1122,7 @@ const CareerHub = () => {
                 const isChecked = completedInterviews.includes(checkId);
 
                 return (
-                  <label key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', fontSize: '0.88rem', color: isChecked ? '#166534' : 'var(--text-primary)', cursor: 'pointer', fontWeight: 500 }}>
+                  <label key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', fontSize: '0.88rem', color: isChecked ? '#4ade80' : 'var(--text-primary)', cursor: 'pointer', fontWeight: 500 }}>
                     <input
                       type="checkbox"
                       checked={isChecked}
@@ -1192,7 +1192,7 @@ const CareerHub = () => {
               <div key={idx} style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', padding: '1rem', boxShadow: 'var(--card-shadow)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.3rem' }}>
                   <span style={{ fontSize: '0.75rem', color: 'var(--accent)', fontWeight: 600 }}>{prob.topic}</span>
-                  <span style={{ fontSize: '0.72rem', padding: '0.1rem 0.4rem', borderRadius: '4px', background: prob.difficulty === 'Easy' ? '#f0fdf4' : '#fffbeb', color: prob.difficulty === 'Easy' ? '#166534' : '#92400e', border: '1px solid var(--border)', fontWeight: 700 }}>
+                  <span style={{ fontSize: '0.72rem', padding: '0.1rem 0.4rem', borderRadius: '4px', background: prob.difficulty === 'Easy' ? 'rgba(34, 197, 94, 0.15)' : 'rgba(251, 191, 36, 0.15)', color: prob.difficulty === 'Easy' ? '#4ade80' : '#fbbf24', border: '1px solid var(--border)', fontWeight: 700 }}>
                     {prob.difficulty}
                   </span>
                 </div>
@@ -1215,7 +1215,7 @@ const CareerHub = () => {
             {currentCareerData.interviewPreparation.hrQuestions.map((hr, idx) => (
               <div key={idx} style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', padding: '1rem', boxShadow: 'var(--card-shadow)' }}>
                 <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.92rem' }}>{hr.q}</div>
-                <div style={{ color: '#b45309', fontSize: '0.82rem', marginTop: '0.35rem', fontWeight: 500 }}>
+                <div style={{ color: '#fbbf24', fontSize: '0.82rem', marginTop: '0.35rem', fontWeight: 500 }}>
                   💡 <strong>Strategy:</strong> {hr.tip}
                 </div>
               </div>
@@ -1245,7 +1245,7 @@ const CareerHub = () => {
               </h3>
               <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
                 {currentCareerData.resumeSkills.technicalSkills.map((sk, idx) => (
-                  <span key={idx} style={{ padding: '0.3rem 0.65rem', borderRadius: '4px', background: '#eff6ff', border: '1px solid #bfdbfe', color: '#1d4ed8', fontSize: '0.82rem', fontWeight: 600 }}>
+                  <span key={idx} style={{ padding: '0.3rem 0.65rem', borderRadius: '4px', background: 'rgba(37, 99, 235, 0.15)', border: '1px solid rgba(59, 130, 246, 0.3)', color: '#93c5fd', fontSize: '0.82rem', fontWeight: 600 }}>
                     {sk}
                   </span>
                 ))}
@@ -1258,7 +1258,7 @@ const CareerHub = () => {
               </h3>
               <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
                 {currentCareerData.resumeSkills.technologies.map((t, idx) => (
-                  <span key={idx} style={{ padding: '0.3rem 0.65rem', borderRadius: '4px', background: '#f0fdf4', border: '1px solid #bbf7d0', color: '#15803d', fontSize: '0.82rem', fontWeight: 600 }}>
+                  <span key={idx} style={{ padding: '0.3rem 0.65rem', borderRadius: '4px', background: 'rgba(34, 197, 94, 0.15)', border: '1px solid rgba(34, 197, 94, 0.3)', color: '#4ade80', fontSize: '0.82rem', fontWeight: 600 }}>
                     {t}
                   </span>
                 ))}
@@ -1271,7 +1271,7 @@ const CareerHub = () => {
               </h3>
               <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
                 {currentCareerData.resumeSkills.tools.map((tool, idx) => (
-                  <span key={idx} style={{ padding: '0.3rem 0.65rem', borderRadius: '4px', background: '#fffbeb', border: '1px solid #fde68a', color: '#b45309', fontSize: '0.82rem', fontWeight: 600 }}>
+                  <span key={idx} style={{ padding: '0.3rem 0.65rem', borderRadius: '4px', background: 'rgba(251, 191, 36, 0.12)', border: '1px solid rgba(251, 191, 36, 0.3)', color: '#fde047', fontSize: '0.82rem', fontWeight: 600 }}>
                     {tool}
                   </span>
                 ))}
@@ -1284,7 +1284,7 @@ const CareerHub = () => {
               </h3>
               <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
                 {currentCareerData.resumeSkills.softSkills.map((s, idx) => (
-                  <span key={idx} style={{ padding: '0.3rem 0.65rem', borderRadius: '4px', background: '#fdf2f8', border: '1px solid #fbcfe8', color: '#9d174d', fontSize: '0.82rem', fontWeight: 600 }}>
+                  <span key={idx} style={{ padding: '0.3rem 0.65rem', borderRadius: '4px', background: 'rgba(236, 72, 153, 0.15)', border: '1px solid rgba(236, 72, 153, 0.3)', color: '#f472b6', fontSize: '0.82rem', fontWeight: 600 }}>
                     {s}
                   </span>
                 ))}
@@ -1314,7 +1314,7 @@ const CareerHub = () => {
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
                     <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>{role.title}</h3>
-                    <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#166534', background: '#f0fdf4', border: '1px solid #bbf7d0', padding: '0.15rem 0.5rem', borderRadius: '999px' }}>
+                    <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#4ade80', background: 'rgba(34, 197, 94, 0.15)', border: '1px solid rgba(34, 197, 94, 0.3)', padding: '0.15rem 0.5rem', borderRadius: '999px' }}>
                       {role.salaryRange}
                     </span>
                   </div>
@@ -1563,21 +1563,21 @@ const CareerHub = () => {
                     </div>
 
                     <div>
-                      <strong style={{ fontSize: '0.8rem', color: '#0284c7' }}>Primary Technologies:</strong>
+                      <strong style={{ fontSize: '0.8rem', color: '#38bdf8' }}>Primary Technologies:</strong>
                       <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.2rem' }}>
                         {data.resumeSkills?.technologies?.join(', ') || 'Various'}
                       </div>
                     </div>
 
                     <div>
-                      <strong style={{ fontSize: '0.8rem', color: '#9333ea' }}>Example Capstone Project:</strong>
+                      <strong style={{ fontSize: '0.8rem', color: '#60a5fa' }}>Example Capstone Project:</strong>
                       <div style={{ fontSize: '0.85rem', color: 'var(--text-primary)', marginTop: '0.2rem', fontWeight: 600 }}>
                         {data.projects[0]?.name}
                       </div>
                     </div>
 
                     <div>
-                      <strong style={{ fontSize: '0.8rem', color: '#16a34a' }}>Typical Job Titles:</strong>
+                      <strong style={{ fontSize: '0.8rem', color: '#4ade80' }}>Typical Job Titles:</strong>
                       <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.2rem' }}>
                         {data.relatedJobRoles.map((r) => r.title).join(' • ')}
                       </div>
@@ -1670,21 +1670,21 @@ const CareerHub = () => {
 
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)' }}>
                     <div>
-                      <div style={{ fontSize: '0.78rem', color: '#166534', fontWeight: 700 }}>Required Skills:</div>
+                      <div style={{ fontSize: '0.78rem', color: '#4ade80', fontWeight: 700 }}>Required Skills:</div>
                       <div style={{ fontSize: '0.82rem', color: 'var(--text-primary)', marginTop: '0.2rem', fontWeight: 600 }}>
                         {sug.requiredSkills.join(' • ')}
                       </div>
                     </div>
 
                     <div>
-                      <div style={{ fontSize: '0.78rem', color: '#991b1b', fontWeight: 700 }}>Missing Skills to Acquire:</div>
+                      <div style={{ fontSize: '0.78rem', color: '#f87171', fontWeight: 700 }}>Missing Skills to Acquire:</div>
                       <div style={{ fontSize: '0.82rem', color: 'var(--text-primary)', marginTop: '0.2rem', fontWeight: 600 }}>
                         {sug.missingSkills.join(' • ') || 'None! Ready to build'}
                       </div>
                     </div>
 
                     <div>
-                      <div style={{ fontSize: '0.78rem', color: '#92400e', fontWeight: 700 }}>Suggested Next Step:</div>
+                      <div style={{ fontSize: '0.78rem', color: '#fbbf24', fontWeight: 700 }}>Suggested Next Step:</div>
                       <div style={{ fontSize: '0.82rem', color: 'var(--text-primary)', marginTop: '0.2rem', fontWeight: 600 }}>
                         {sug.suggestedNextStep}
                       </div>

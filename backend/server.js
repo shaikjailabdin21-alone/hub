@@ -9,7 +9,7 @@ const seedData = require('./seed');
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 5000;
 
 // Middlewares
 app.use(express.json());
@@ -48,9 +48,11 @@ app.get('/api', (req, res) => {
 
 // Health Check
 app.get('/api/health', (req, res) => {
+  const mongoose = require('mongoose');
   res.status(200).json({
     status: 'online',
     service: 'Hub Learning Website API',
+    mongo: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
     timestamp: new Date().toISOString(),
   });
 });
@@ -115,16 +117,44 @@ app.use((err, req, res, next) => {
   console.error('[Unhandled Server Error]:', err.stack || err.message);
 
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+  const isProduction = process.env.NODE_ENV === 'production';
   res.status(statusCode).json({
     success: false,
     message: err.message || 'An unexpected server error occurred.',
-    error: err,
-    stack: err.stack
+    ...(isProduction ? {} : { error: err.message, stack: err.stack }),
   });
 });
 
-// Start Server after connecting to Database & Auto-Seeding
+// Start Server with resilient port binding
 let serverInstance = null;
+
+const portsToTry = [PORT, 5001, 5002, 5005];
+let portIndex = 0;
+
+const tryListen = () => {
+  const currentPort = portsToTry[portIndex];
+  serverInstance = app.listen(currentPort, () => {
+    console.log(`===============================================`);
+    console.log(`🚀 Hub Learning Backend running on port ${currentPort}`);
+    console.log(`📡 API Endpoints available at: http://localhost:${currentPort}/api`);
+    console.log(`===============================================`);
+  });
+
+  serverInstance.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      portIndex++;
+      if (portIndex < portsToTry.length) {
+        console.warn(`[Port ${currentPort} in use] Retrying on fallback port ${portsToTry[portIndex]}...`);
+        tryListen();
+      } else {
+        console.error(`\n❌ [PORTS OCCUPIED]: Could not bind to any fallback port.`);
+        process.exit(1);
+      }
+    } else {
+      console.error('[Server Error]:', err.message);
+    }
+  });
+};
 
 const startServer = async () => {
   try {
@@ -134,26 +164,13 @@ const startServer = async () => {
     // Initialize scheduled cron jobs
     const { initWeeklyCron } = require('./services/schedulerService');
     initWeeklyCron();
+
+    // Only start accepting incoming HTTP requests once DB & seeds are ready
+    tryListen();
   } catch (err) {
     console.error('[Database Initialization Error]:', err.message);
+    process.exit(1);
   }
-
-  serverInstance = app.listen(PORT, () => {
-    console.log(`===============================================`);
-    console.log(`🚀 Hub Learning Backend running on port ${PORT}`);
-    console.log(`📡 API Endpoints available at: http://localhost:${PORT}/api`);
-    console.log(`===============================================`);
-  });
-
-  serverInstance.on('error', (err) => {
-    if (err.code === 'EADDRINUSE') {
-      console.error(`\n❌ [PORT ${PORT} IN USE]: Port ${PORT} is already occupied by another running process.`);
-      console.error(`Please close any existing running backend instances or stop the process on port ${PORT}.\n`);
-      process.exit(1);
-    } else {
-      console.error('[Server Error]:', err.message);
-    }
-  });
 };
 
 // Graceful shutdown

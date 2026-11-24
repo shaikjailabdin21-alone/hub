@@ -20,13 +20,13 @@ const Progress = () => {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.45rem',
-              background: '#dbeafe',
-              border: '1px solid #bfdbfe',
+              background: 'rgba(37, 99, 235, 0.15)',
+              border: '1px solid rgba(59, 130, 246, 0.3)',
               borderRadius: '999px',
               padding: '0.25rem 0.8rem',
               fontSize: '0.75rem',
               fontWeight: 700,
-              color: '#1d4ed8',
+              color: '#93c5fd',
               textTransform: 'uppercase',
               letterSpacing: '0.5px',
               marginBottom: '0.75rem',
@@ -47,7 +47,7 @@ const Progress = () => {
           <div
             className="circular-progress"
             style={{
-              background: `conic-gradient(var(--accent) 0% ${overallPct}%, #e2e8f0 ${overallPct}% 100%)`,
+              background: `conic-gradient(var(--accent) 0% ${overallPct}%, rgba(30, 58, 138, 0.25) ${overallPct}% 100%)`,
             }}
           >
             <div className="circular-progress-inner">
@@ -77,7 +77,7 @@ const Progress = () => {
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon-wrapper" style={{ background: '#eff6ff', color: 'var(--accent)' }}>
+          <div className="stat-icon-wrapper" style={{ background: 'rgba(37, 99, 235, 0.15)', color: 'var(--accent)' }}>
             📊
           </div>
           <div className="stat-info">
@@ -123,7 +123,7 @@ const Progress = () => {
           <div className="hub-progress-card">
             <div className="hub-progress-card-header">
               <span className="hub-progress-name">✨ Skills Hub</span>
-              <span className="hub-progress-pct" style={{ color: '#0284c7' }}>
+              <span className="hub-progress-pct" style={{ color: '#38bdf8' }}>
                 {hubStats.skills?.percentage || 63}%
               </span>
             </div>
@@ -136,7 +136,7 @@ const Progress = () => {
           <div className="hub-progress-card">
             <div className="hub-progress-card-header">
               <span className="hub-progress-name">⚡ Coding Hub</span>
-              <span className="hub-progress-pct" style={{ color: '#16a34a' }}>
+              <span className="hub-progress-pct" style={{ color: '#4ade80' }}>
                 {hubStats.coding?.percentage || 71}%
               </span>
             </div>
@@ -149,7 +149,7 @@ const Progress = () => {
           <div className="hub-progress-card">
             <div className="hub-progress-card-header">
               <span className="hub-progress-name">🎯 Career Hub</span>
-              <span className="hub-progress-pct" style={{ color: '#d97706' }}>
+              <span className="hub-progress-pct" style={{ color: '#fbbf24' }}>
                 {hubStats.career?.percentage || 80}%
               </span>
             </div>
@@ -162,11 +162,11 @@ const Progress = () => {
           <div className="hub-progress-card">
             <div className="hub-progress-card-header">
               <span className="hub-progress-name">🚀 Project Hub</span>
-              <span className="hub-progress-pct" style={{ color: '#9333ea' }}>
+              <span className="hub-progress-pct" style={{ color: '#60a5fa' }}>
                 {hubStats.project?.percentage || 60}%
               </span>
             </div>
-            <ProgressBar value={hubStats.project?.percentage || 60} height="8px" gradient="linear-gradient(135deg, #a855f7 0%, #7e22ce 100%)" />
+            <ProgressBar value={hubStats.project?.percentage || 60} height="8px" gradient="linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)" />
             <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
               {hubStats.project?.completed || 3} of {hubStats.project?.total || 5} capstones published
             </div>
@@ -224,7 +224,7 @@ const Progress = () => {
             <div className="budget-metric-value">
               185k <span className="budget-metric-sub">/ 250k monthly</span>
             </div>
-            <ProgressBar value={74} height="8px" gradient="linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%)" />
+            <ProgressBar value={74} height="8px" gradient="linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)" />
             <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
               Educational code assistance & tutoring
             </div>
@@ -238,7 +238,7 @@ const Progress = () => {
             <div className="budget-metric-value">
               75% <span className="budget-metric-sub">target completed</span>
             </div>
-            <ProgressBar value={75} height="8px" gradient="linear-gradient(135deg, #ec4899 0%, #db2777 100%)" />
+            <ProgressBar value={75} height="8px" gradient="linear-gradient(135deg, #0284c7 0%, #00d4ff 100%)" />
             <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
               1 capstone left to complete placement portfolio
             </div>
@@ -265,7 +265,7 @@ const Progress = () => {
                 Completed Quiz: React Fundamentals
               </div>
               <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '0.15rem' }}>
-                Score: <strong style={{ color: '#16a34a' }}>100% (4/4 correct)</strong> • 2 hours ago
+                Score: <strong style={{ color: '#4ade80' }}>100% (4/4 correct)</strong> • 2 hours ago
               </div>
             </div>
           </div>

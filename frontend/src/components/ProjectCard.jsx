@@ -95,17 +95,17 @@ const ProjectCard = ({ project, onEdit, onDelete, canEdit = false, onOpenFullFra
         <div
           className="project-problem-snippet"
           style={{
-            background: '#fdf2f8',
-            borderLeft: '3px solid #db2777',
+            background: 'rgba(37, 99, 235, 0.12)',
+            borderLeft: '3px solid #3b82f6',
             padding: '0.65rem 0.85rem',
             borderRadius: '0 8px 8px 0',
             marginBottom: '0.85rem',
             fontSize: '0.85rem',
             lineHeight: '1.5',
-            color: '#1e293b',
+            color: 'var(--text-secondary)',
           }}
         >
-          <span style={{ color: '#be185d', fontWeight: 700, display: 'inline-block', marginRight: '0.35rem' }}>
+          <span style={{ color: '#60a5fa', fontWeight: 700, display: 'inline-block', marginRight: '0.35rem' }}>
             🎯 Problem Statement:
           </span>
           {project.problemStatement}
@@ -132,9 +132,9 @@ const ProjectCard = ({ project, onEdit, onDelete, canEdit = false, onOpenFullFra
               className="project-link-btn"
               onClick={() => onOpenFullFrame(project)}
               style={{
-                borderColor: '#bfdbfe',
-                color: '#1d4ed8',
-                background: '#eff6ff',
+                borderColor: 'rgba(59, 130, 246, 0.45)',
+                color: '#60a5fa',
+                background: 'rgba(37, 99, 235, 0.18)',
                 fontWeight: 700,
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -155,9 +155,9 @@ const ProjectCard = ({ project, onEdit, onDelete, canEdit = false, onOpenFullFra
               rel="noopener noreferrer"
               className="project-link-btn"
               style={{
-                borderColor: '#bbf7d0',
-                color: '#15803d',
-                background: '#f0fdf4',
+                borderColor: 'rgba(14, 165, 233, 0.45)',
+                color: '#38bdf8',
+                background: 'rgba(14, 165, 233, 0.15)',
                 fontWeight: 700,
               }}
               title="Open Live Deployment in New Tab"
@@ -173,9 +173,9 @@ const ProjectCard = ({ project, onEdit, onDelete, canEdit = false, onOpenFullFra
               rel="noopener noreferrer"
               className="project-link-btn"
               style={{
-                borderColor: 'var(--border-strong)',
+                borderColor: 'rgba(59, 130, 246, 0.3)',
                 color: 'var(--text-primary)',
-                background: '#ffffff',
+                background: 'rgba(15, 23, 42, 0.85)',
                 fontWeight: 600,
               }}
               title="Open GitHub Repository"

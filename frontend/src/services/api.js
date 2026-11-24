@@ -1,12 +1,13 @@
 import axios from 'axios';
 
-// Local dev uses Vite proxy (/api), production uses the deployed Render backend
+// In development, use relative '/api' so Vite's proxy handles it (avoids CORS issues).
+// In production (deployed), use the deployed backend URL.
 const isLocal = typeof window !== 'undefined' &&
   (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
 
 const baseURL = isLocal
-  ? 'http://localhost:5000/api'
-  : 'https://hub-872l.onrender.com/api';
+  ? '/api'
+  : (import.meta.env.VITE_API_URL || 'https://hub-872l.onrender.com/api');
 
 const api = axios.create({
   baseURL,
@@ -33,11 +34,18 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
-      // If token expired, clear invalid auth
       const currentPath = window.location.pathname;
-      if (currentPath !== '/login' && currentPath !== '/register' && currentPath !== '/') {
+      // Don't clear auth or redirect on public auth routes
+      if (
+        currentPath !== '/login' &&
+        currentPath !== '/register' &&
+        currentPath !== '/forgot-password' &&
+        currentPath !== '/reset-password'
+      ) {
         localStorage.removeItem('hub_auth_token');
         localStorage.removeItem('hub_user_profile');
+        // Redirect to login
+        window.location.href = '/login';
       }
     }
     return Promise.reject(error);

@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <footer
       style={{
-        background: '#ffffff',
-        borderTop: '1px solid var(--border)',
+        background: 'linear-gradient(180deg, rgba(6, 12, 28, 0.96) 0%, rgba(2, 6, 18, 0.99) 100%)',
+        borderTop: '1px solid rgba(59, 130, 246, 0.25)',
         padding: '3rem 2.5rem 1.5rem',
         marginTop: 'auto',
       }}

@@ -80,7 +80,7 @@ const CodingHub = () => {
         <div className="hub-hero-header">
           <div
             className="hub-hero-icon"
-            style={{ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)' }}
+            style={{ background: 'var(--accent-gradient)' }}
           >
             ⚡
           </div>
@@ -241,7 +241,7 @@ const CodingHub = () => {
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
                           <span className="problem-title">{prob.title}</span>
                           {isSolved && (
-                            <span style={{ fontSize: '0.75rem', color: '#16a34a', background: '#f0fdf4', border: '1px solid #bbf7d0', padding: '0.15rem 0.55rem', borderRadius: 'var(--radius-full)', fontWeight: 700 }}>
+                            <span style={{ fontSize: '0.75rem', color: '#4ade80', background: 'rgba(34, 197, 94, 0.15)', border: '1px solid rgba(34, 197, 94, 0.3)', padding: '0.15rem 0.55rem', borderRadius: 'var(--radius-full)', fontWeight: 700 }}>
                               ✓ Solved
                             </span>
                           )}

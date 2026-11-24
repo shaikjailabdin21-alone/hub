@@ -74,6 +74,9 @@ const updateCareerProfile = async (req, res) => {
     user.lastActive = new Date();
 
     // Ensure Career Hub is in user's modulesUsed list
+    if (!Array.isArray(user.modulesUsed)) {
+      user.modulesUsed = [];
+    }
     if (!user.modulesUsed.includes('Career Hub')) {
       user.modulesUsed.push('Career Hub');
     }
