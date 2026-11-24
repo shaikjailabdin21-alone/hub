@@ -151,7 +151,7 @@ const triggerWeeklyReport = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: 'Weekly platform report generated and dispatched to ' + (process.env.ADMIN_EMAIL || 'shaikjailabdin23@gmail.com'),
+      message: 'Weekly platform report generated and dispatched to ' + (process.env.ADMIN_EMAIL || 'shaikjailabdin21@gmail.com'),
       result,
       stats,
     });

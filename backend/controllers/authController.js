@@ -30,7 +30,7 @@ const register = async (req, res) => {
     const normalizedEmail = email.toLowerCase().trim();
 
     // Prevent anyone from registering as or with the admin email
-    if (normalizedEmail === ADMIN_EMAIL.toLowerCase() || normalizedEmail === 'shaikjailabdin23@gmail.com' || normalizedEmail === 'admin@hub.edu') {
+    if (normalizedEmail === ADMIN_EMAIL.toLowerCase() || normalizedEmail === 'shaikjailabdin21@gmail.com' || normalizedEmail === 'admin@hub.edu') {
       return res.status(403).json({
         success: false,
         message: 'Administrator accounts cannot be registered publicly. Please log in directly with your admin credentials.',
@@ -180,14 +180,14 @@ const login = async (req, res) => {
     }
 
     const normalizedEmail = email.toLowerCase().trim();
-    const adminEmail = (process.env.ADMIN_EMAIL || 'shaikjailabdin23@gmail.com').toLowerCase().trim();
+    const adminEmail = (process.env.ADMIN_EMAIL || 'shaikjailabdin21@gmail.com').toLowerCase().trim();
     const adminDemoPass = process.env.ADMIN_PASSWORD || 'admin123';
 
     // Check for user
     let user = await User.findOne({ email: normalizedEmail });
 
     // Auto-provision specified Admin account if not yet in database
-    if (!user && (normalizedEmail === adminEmail || normalizedEmail === 'shaikjailabdin23@gmail.com')) {
+    if (!user && (normalizedEmail === adminEmail || normalizedEmail === 'shaikjailabdin21@gmail.com')) {
       const salt = await bcrypt.genSalt(10);
       const adminPass = await bcrypt.hash(adminDemoPass, salt);
       user = await User.create({

@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'shaikjailabdin23@gmail.com';
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'shaikjailabdin21@gmail.com';
 
 // Create nodemailer transporter if environment credentials exist
 const createTransporter = () => {

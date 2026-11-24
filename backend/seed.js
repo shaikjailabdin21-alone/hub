@@ -47,13 +47,13 @@ const seedData = async () => {
         console.log('[Seed] HUB23 project verified and seeded.');
       }
 
-      const designatedAdmin = await User.findOne({ email: 'shaikjailabdin23@gmail.com' });
+      const designatedAdmin = await User.findOne({ email: 'shaikjailabdin21@gmail.com' });
       if (!designatedAdmin) {
         const salt = await bcrypt.genSalt(10);
         const adminPass = await bcrypt.hash(process.env.ADMIN_PASSWORD || 'admin123', salt);
         await User.create({
           name: 'Shaik Jailabdin',
-          email: 'shaikjailabdin23@gmail.com',
+          email: 'shaikjailabdin21@gmail.com',
           password: adminPass,
           role: 'admin',
           college: 'Hub Learning Administration',
@@ -64,7 +64,7 @@ const seedData = async () => {
           loginCount: 5,
           modulesUsed: ['Admin Dashboard', 'Project Hub', 'Technical Hub', 'Coding Hub'],
         });
-        console.log('[Seed] Designated Admin verified and seeded: shaikjailabdin23@gmail.com');
+        console.log('[Seed] Designated Admin verified and seeded: shaikjailabdin21@gmail.com');
       }
 
       const adminExists = await User.findOne({ email: 'admin@hub.edu' });

@@ -130,7 +130,7 @@ const AdminDashboard = () => {
             Administrator Dashboard
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', margin: 0 }}>
-            Logged in as <strong style={{ color: 'var(--text-primary)' }}>{user?.email || 'shaikjailabdin23@gmail.com'}</strong>.
+            Logged in as <strong style={{ color: 'var(--text-primary)' }}>{user?.email || 'shaikjailabdin21@gmail.com'}</strong>.
             Real-time analytics, user tracking, platform activity, and project governance.
           </p>
         </div>
